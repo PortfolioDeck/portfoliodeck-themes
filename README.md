@@ -1,5 +1,7 @@
 ## Adding a theme
 
+*Create a new branch (important)*
+
 *Create a new folder in `themes` containing:*
 
 * Assets (a folder with css, images etc)
