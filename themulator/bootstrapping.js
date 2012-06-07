@@ -2,7 +2,13 @@
 var models = {
   portfolio: { 
     name: "My awesome portfolio",
-    logo: {},
+    logo: {
+      width: "500",
+      height: "200",
+      landscape: true,
+      portrait: false,
+      full_name: "logo.png"
+    },
     description: "This is my portfolio and I like it!"
   },
   contact: {
