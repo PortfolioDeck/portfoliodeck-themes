@@ -34,7 +34,6 @@ var themulatorBar = (function() {
     $themulatorBar.append(html.join(''));
     $themulatorBar.live('change', '#theme-selector', function() {
       var n = $('#theme-selector')[0].selectedIndex;
-      console.log(n);
       setTheme(n);
       window.location.reload();
     });
@@ -72,5 +71,4 @@ var loadPage = function(page) {
       ifrm.document.close();
     });
   });
-
 };
