@@ -1,4 +1,4 @@
-{% for _item in set.items limit:1 %}
+{% assign _item = set.items.first %}
 <div class="item">
   <div class="pagination">
     {% if _item.next_item %}
@@ -18,4 +18,3 @@
     {% endif %}
   </div>
 </div>
-{% endfor %}
