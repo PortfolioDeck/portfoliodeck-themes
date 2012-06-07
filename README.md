@@ -13,3 +13,6 @@
 
 *Add the theme to themes.js*
 
+## Syncing themes to PortfolioDeck
+
+Do: `Rake tjosan hejsan`
