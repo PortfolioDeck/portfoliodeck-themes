@@ -1,12 +1,3 @@
-var themes = [
-  { name: "Mariatorget", path: "Mariatorget" },
-  { name: "Blank Slate", path: "Blank Slate" },
-  { name: "Minimal Black", path: "Minimal Black" },
-  { name: "Minimal White", path: "Minimal White" },
-  { name: "Plain Dark", path: "Plain Dark" },
-  { name: "Snofsig", path: "Snofsig" }
-];
-
 var getTheme = function() {
   var t;
   if (t = localStorage.getItem("theme")) {
@@ -56,11 +47,11 @@ var loadPage = function(page) {
     cache: false
   });
   
-  $.get("themes/" + theme + "/layout.liquid", function(layout) {
-    $.get("themes/" + theme + "/" + page + ".liquid", function(pageContent) {
+  $.get(theme + "/layout.liquid", function(layout) {
+    $.get(theme + "/" + page + ".liquid", function(pageContent) {
       var src = layout.replace(/{{\s*?content_for_layout\s*?}}/, pageContent);
       var timeStamp = new Date().getTime();
-      src = src.replace(/\{\{\s*?theme\s*?\|\s*?asset_path:\s*?'(.*?)'\s*?\}\}/gi, "themes/" + theme + "/assets/$1?timestamp=" + timeStamp);
+      src = src.replace(/\{\{\s*?theme\s*?\|\s*?asset_path:\s*?'(.*?)'\s*?\}\}/gi, theme + "/assets/$1?timestamp=" + timeStamp);
       src = src.replace("</head>", "<meta http-equiv=\"Expires\" content=\"Tue, 01 Jan 2000 12:12:12 GMT\"><meta http-equiv=\"Pragma\" content=\"no-cache\"><base target=\"_top\"></head>");
       if (console) { console.log(src); }
       
