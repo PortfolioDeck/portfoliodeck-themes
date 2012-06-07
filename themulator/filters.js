@@ -12,6 +12,9 @@ var assetUrl = function(dimensions) {
       dims[0] = dims[0].replace(/[^0-9]/g, '');
       dims[1] = dims[0];
     }
+  } else {
+    dims[0] = dims[0].replace(/[^0-9]/g, '');
+    dims[1] = dims[1].replace(/[^0-9]/g, '');
   }
   return "http://placekitten.com/" + dims[0] + "/" + dims[1];
 };
