@@ -2,7 +2,8 @@
 var models = {
   portfolio: { 
     name: "My awesome portfolio",
-    logo: {}
+    logo: {},
+    description: "This is my portfolio and I like it!"
   },
   contact: {
     email: "my.email@domain.com",
@@ -13,7 +14,8 @@ var models = {
     phone: "08-56363532",
     facebook: "http://facebook.com/portfoliodeck",
     twitter: "http://twitter.com/portfoliodeck",
-    url: "http://portfoliodeck.com"
+    url: "http://portfoliodeck.com",
+    url_title: "My site"
   },
   sets: [
     {
