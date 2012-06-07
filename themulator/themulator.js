@@ -1,6 +1,49 @@
+var themes = [
+  { name: "Mariatorget", path: "Mariatorget" },
+  { name: "Blank Slate", path: "Blank Slate" },
+  { name: "Minimal Black", path: "Minimal Black" },
+  { name: "Minimal White", path: "Minimal White" },
+  { name: "Plain Dark", path: "Plain Dark" },
+  { name: "Snofsig", path: "Snofsig" }
+];
+
+var getTheme = function() {
+  var t;
+  if (t = localStorage.getItem("theme")) {
+    return t;
+  } else {
+    return 0;
+  }
+};
+
+var setTheme = function(themeNumber) {
+  localStorage.setItem("theme", themeNumber);
+};
+
+var themulatorBar = (function() {
+  var t = getTheme();
+  var html = [];
+  html.push('<select id="theme-selector">');
+  for (var i = 0, l = themes.length; i < l; i++) {
+    html.push('<option value="' + i + '"' + ( t == i ? ' selected="selected"' : '') + '>' + themes[i].name + '</option>')
+  }
+  html.push('</select>');
+
+  $(document).ready(function() {
+    var $themulatorBar = $('#themulator-tools');
+    $themulatorBar.append(html.join(''));
+    $themulatorBar.live('change', '#theme-selector', function() {
+      var n = $('#theme-selector')[0].selectedIndex;
+      console.log(n);
+      setTheme(n);
+      window.location.reload();
+    });
+  });
+})();
+
 
 var loadPage = function(page) {
-  var theme = "Mariatorget";
+  var theme = themes[getTheme()].path;
   var ifrm = $("#content")[0];
   ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
   var html = "";
