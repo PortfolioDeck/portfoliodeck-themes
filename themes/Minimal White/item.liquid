@@ -1,0 +1,55 @@
+<div class="item">
+  <div class="pagination">
+    <div class="show_thumbs">
+      <a href="{{ item.set | path_with_collection: collection}}">Thumbs</a>
+    </div>
+    {% if item.previous_item %}
+      <a href="{{ item.previous_item | path_with_collection: collection }}" class="previous">&laquo; Previous</a>
+    {% else %}
+    <span class="previous">&laquo; Previous</span>
+    {% endif %}
+    | {{ item.position }}/{{ item.set.items.size }} |
+    {% if item.next_item %}
+      <a href="{{ item.next_item | path_with_collection: collection }}" class="next">Next &raquo;</a>
+    {% else %}
+    <span class="next">Next &raquo;</span>
+    {% endif %}
+  </div>
+  {% if item.next_item %}
+    {% if collections == empty and pages == empty %}
+       {% if item.is_video %}
+        {{ item | video_tag: '910' }} 
+      {% else %}
+        <a href="{{ item.next_item | path_with_collection: collection }}">{{ item | asset_tag: '910' }}</a>
+      {% endif %}
+    {% else %}
+      {% if item.is_video %}
+        {{ item | video_tag: '725' }} 
+      {% else %}
+        <a href="{{ item.next_item | path_with_collection: collection }}">{{ item | asset_tag: '725' }}</a>
+      {% endif %}   
+    {% endif %}
+  {% else %}
+    {% if collections == empty and pages == empty %}
+      {% if item.is_video %}
+        {{ item | video_tag: '910' }} 
+      {% else %}
+        {{ item | asset_tag: '910' }} 
+      {% endif %}
+    {% else %}
+      {% if item.is_video %}
+        {{ item | video_tag: '725' }} 
+      {% else %}
+        {{ item | asset_tag: '725' }} 
+      {% endif %}
+    {% endif %}
+  {% endif %}
+  {% if item.title %}
+    <h1>{{ item.title }}</h1>
+  {% endif %}
+  {% if item.description %}
+  <div class="description">
+    {{ item.description | textilize }}
+  </div>
+  {% endif %}
+</div>

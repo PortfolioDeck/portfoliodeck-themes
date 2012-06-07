@@ -1,0 +1,91 @@
+body {
+min-width: 960px; 
+color: #aaa;
+font: normal 13px/1.5 "Droid Sans Mono", Monaco, Courier; }
+
+a { 
+color: #aaa;
+text-decoration: none; }
+a:hover { text-decoration: underline; }
+a.current { color: #333; }
+h1, h2, h3 { 
+margin: 0;
+font-size: 100%; }
+p { margin:0 0 1em 0; }
+
+.grid_1, .grid_2, .grid_3, .grid_4 {
+display:inline;
+float: left;
+position: relative;
+margin-left: 15px;
+margin-right: 15px; }
+.grid_1 { width:210px; }
+.grid_2 { width:450px; }
+.grid_3 { width:690px; }
+.grid_4 { width:930px; }
+
+#wrap {
+margin-top: 2em;
+margin-left: auto;
+margin-right: auto;
+width: 960px;
+position: relative; }
+
+.title { 
+  font-weight: normal;
+  font-size: 100%;
+  margin: 0 0 1em 0; }
+  .title span { color: #aaa; }
+  
+.title a, .set .item, .page { color: #333; }    
+.pagination { text-align: center; }
+
+#nav { 
+  float: none;
+  display: block;
+  position: fixed;
+  zoom:1; }
+  #nav ul {
+      list-style:none;
+      margin:0 0 0.5em 0; 
+      padding:0; }
+  #nav .pages { margin-top: 1em; }
+
+#content { 
+  margin-left: 240px; 
+  margin-bottom: 8em;}
+
+.items {
+  -moz-column-count: 3;
+  -moz-column-gap: 0px;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 30px;
+  column-count: 3;
+  column-gap: 30px;
+  margin-bottom: 2em;}
+  .items .item {
+    position: relative;
+    width: 210px;
+    padding-bottom: 26px;
+    margin-bottom: 0;
+    display: inline-block; }
+    .item span { 
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 10px;
+      overflow-x:hidden; }
+
+.set .item { margin-bottom: 60px; } 
+  .set h2, .set .description { display: block; }
+  
+  .set .description { 
+    display: block;
+    padding-top: 15px; }
+
+.page {
+  padding: 3em 5em;
+  background: #f4f4f4; }
+
+#footer { margin-bottom: 2em;}
+  #footer .adr, #footer .tel { margin: 0 15px; }

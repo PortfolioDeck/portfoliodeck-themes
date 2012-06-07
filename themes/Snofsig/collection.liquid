@@ -1,0 +1,15 @@
+<div class="sets">
+  <ul>
+  {% for _set in collection.sets %}
+    <li>
+        <a href="{{ _set.items.first | path_with_collection: collection] }}"  style="background-image:url({{ _set.cover | image_url: 'c200' }});" title="{{ _set.title }}"></a>
+        {{ _set.title }}
+    </li>
+  {% endfor %}
+  </ul>
+  {% if collection.description %}
+  <div class="description">
+    {{ collection.description | textilize }}
+  </div>
+  {% endif %}
+</div>

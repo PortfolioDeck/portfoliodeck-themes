@@ -1,0 +1,10 @@
+<ul class="sets">
+{% for _set in sets %}
+  <li>
+    <a href="{{ _set.items.first | path }}">
+      {{ _set.cover | asset_tag: 'h150' }}
+      <span class="title">{{ _set.title }}</span>
+    </a>
+  </li>
+{% endfor %}
+</ul>

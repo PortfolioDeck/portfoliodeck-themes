@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>
+    {% if set %}{{ set.name }} &ndash; {% elsif collection %}{{ collection.title }} &ndash; {% elsif page %}{{ page.title }} &ndash; {% endif %}{{ portfolio.name | strip_html }}
+  </title>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="{{theme | asset_path: 'style.css'}}" media="screen" rel="Stylesheet" type="text/css">
+  
+  <meta property="og:title" content="{% if set %}{{ set.name }}{% elsif collection %}{{ collection.title }}{% elsif page %}{{ page.title }}{% endif %} &ndash; {{ portfolio.name | strip_html }}" />
+  <meta property="og:type" content="website" />
+  {% if item %}<meta property="og:image" content="{{ item | image_url: '600' }}" />
+  {% elsif set %}<meta property="og:image" content="{{ set.cover | image_url: '600' }}" />
+  {% elsif collection %}<meta property="og:image" content="{{ collection.cover | image_url: '600' }}" />{% endif %}
+</head>
+{% if collections != empty or pages != empty or sets != empty %}
+<body class="with_nav">
+{% else %}
+<body>
+{% endif %}
+<div id="wrap">
+{% if collection == "" %} asdasd {% endif %}
+  <div class="grid_1" id="nav">
+    <h1 class="title"><a href="/">{{ portfolio.name }}</a>
+    {% if portfolio.description %}
+      <span>{{ portfolio.description }}</span>
+    {% endif %}
+    </h1> 
+    {% if collections != empty %}
+    <ul class="collections">
+      {% for _collection in collections %}
+      <li>
+        <a href="{{ _collection | path }}"{% if _collection.id == collection.id %}class="current"{% endif %}>{{ _collection.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if collections == empty and sets != empty %}
+    <ul class="sets">
+      {% for _set in sets %}
+      <li>
+        <a href="{{ _set | path }}"{% if _set.id == set.id %}class="current"{% endif %}>{{ _set.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if pages != empty %}
+    <ul class="pages">
+      {% for _page in pages %}
+      <li>
+        <a href="{{ _page | path }}"{% if _page.id == page.id %}class="current"{% endif %}>{{ _page.title }}</a>
+      </li>
+      {% endfor %}
+      {% if contact.facebook != empty %}<li><a href="{{ contact.facebook }}" class="url">Facebook</a></li>{% endif %}
+      {% if contact.twitter != empty %}<li><a href="{{ contact.twitter }}" class="url">Twitter</a></li>{% endif %}
+      {% if contact.url != empty %}<li><a class="url" href="{{ contact.url }}">{{ contact.url_title }}</a></li>{% endif %}
+    </ul>
+    {% endif %}
+  </div>
+  <div id="content" class="grid_3">
+    {{content_for_layout}}
+  </div>
+  <div id="footer" class="grid_4">
+    {% if contact.street_address or contact.email or contact.phone %}
+    <div class="vcard">
+      <a class="fn n" href="/">{{ portfolio.name }}</a>
+      {% if contact.street_address || contact.city || contact.post_code || contact.country %}
+        <span class="adr">
+          {% if contact.street_address %}<span class="street-address">{{ contact.street_address }}</span>{% endif %}
+          {% if contact.city %}<span class="locality">{{ contact.city }}</span> {% endif %}
+          {% if contact.postcode %}<span class="postal-code">{{ contact.postcode }}</span>{% endif %}
+          {% if contact.country %}<span class="country-name">{{ contact.country }}</span>{% endif %}
+        </span>
+      {% endif %}
+      {% if contact.email %}<a class="email" href="mailto:{{ contact.email }}">{{ contact.email }}</a>{% endif %}
+      {% if contact.phone %}<span class="tel">{{ contact.phone }}</span>{% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!-- jquery.columnizer by Adam Wulf - http://welcome.totheinter.net/columnizer-jquery-plugin/ -->
+<script type="text/javascript" src="{{theme | asset_path: 'jquery-columnizer-min.js'}}"></script>
+<script type="text/javascript">
+$(function(){
+    if ($.browser.msie && $.browser.version < 10) {
+        $('.items').columnize({
+            columns: 3,
+            doneFunc: function() {
+                $('.items .column').css('width', '210px').css('padding', '0 30px');
+                $('.column.last, .column.first').css('padding', '0');        
+            }
+        });        
+    }
+});
+</script>
+</body>
+</html>

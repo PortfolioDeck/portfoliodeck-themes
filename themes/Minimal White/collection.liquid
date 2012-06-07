@@ -1,0 +1,15 @@
+<div class="sets">
+  <h1>{{ collection.name }}</h1>
+  {% if collection.description %}
+  <div class="description">
+    {{ collection.description | textilize }}
+  </div>
+  {% endif %}
+
+  {% for set in collection.sets %}
+    <a href="{{ set.items.first | path_with_collection: collection] }}">
+      {{ set.cover | asset_tag: 'h150' }}
+      <span class="title">{{ set.title }}</span>
+    </a>
+  {% endfor %}
+</div>

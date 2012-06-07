@@ -1,0 +1,18 @@
+<div class="set">
+  <h2 class="title">{{ set.title }}</h2>
+  {% for item in set.items %}
+    <div class="item">
+      {{ item | image_tag: 'w690' }} 
+      {% if item.description or item.title %}
+        <div class="description">
+          {% if item.title %}
+            <h3>{{ item.title }}</h3>
+          {% endif %}
+          {% if item.description %}
+            {{ item.description | textilize }}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>

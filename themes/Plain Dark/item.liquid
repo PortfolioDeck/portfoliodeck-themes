@@ -1,0 +1,19 @@
+<div class="item">
+  <div class="pagination">
+    {% if item.next_item %}
+      <a href="{{ item.next_item | path_with_collection: collection }}" class="next">Next</a>
+    {% endif %}
+    {% if item.previous_item %}
+      <a href="{{ item.previous_item | path_with_collection: collection }}" class="previous">Previous</a>
+    {% endif %}
+  </div>
+  {{ item | asset_tag: '685' }}
+  <div class="description">
+    {% if item.title and item.title != '' %}
+      <h3>{{ item.title }}</h3>
+    {% endif %}
+    {% if item.description and item.description != '' %}
+      {{ item.description | textilize }}
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<div class="sets">
+{% for _set in sets %}
+  <a href="{{ _set | path }}" class="{% cycle 'one', 'two', 'three' %}">{{ _set.cover | asset_tag: 'c205x140' }}<span class="title">{{ _set.title }}</span></a>
+{% endfor %}
+</div>

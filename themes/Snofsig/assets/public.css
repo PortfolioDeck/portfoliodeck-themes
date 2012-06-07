@@ -1,0 +1,229 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.1
+build: 47
+*/
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
+
+html {
+  background: #eee;
+}
+body { 
+  padding: 70px 40px 40px 40px;
+  font-family: "Terminal Dosis Light", arial, serif; 
+  font-size: 14px;
+  color: #333;
+}
+a {
+  color: #1592ea;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #333;
+}
+
+
+/* HEADER */
+h1 { 
+  font-size: 60px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 10px 0;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+h1 a {
+  color: #333;
+  text-decoration: none;
+}
+h2 {
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 30px 0;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #666;
+}
+
+/* FOOTER */
+#footer {
+  padding: 35px 0 0 0;
+  text-align: center;
+  background: url(flourish-bottom.png) top center no-repeat;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #666;
+}
+#footer a,
+#footer .adr,
+#footer .tel {
+  margin-right: 10px;
+}
+
+/* NAVIGATION */
+#nav {
+  overflow: hidden;
+  zoom: 1;
+  padding-bottom: 45px;
+  margin: 0 0 45px 0;
+  background: url(flourish-top.png) bottom center no-repeat;
+}
+#nav ul {
+  text-align: center;
+}
+#nav li {
+  margin: 0 10px;
+  display: inline-block;
+}
+#nav a {
+  font-size: 22px;
+  text-transform: uppercase;
+  color: #999;
+  text-decoration: none;
+}
+#nav a.current {
+  text-decoration: line-through;
+}
+#nav a:hover,
+#nav a:focus {
+  color: #333;
+}
+
+
+
+/* SETS */
+.set_wrapper {
+  background: url(flourish-bottom.png) top center no-repeat;
+  padding-top: 50px;
+  margin-top: -35px;
+}
+.set_wrapper:first-child {
+  background: none;
+  padding-top: 0px;
+  margin-top: 0;
+}
+.sets {
+  zoom: 1;
+  margin: 0 0 45px 0;
+}
+.sets ul {
+  text-align: center;
+}
+.sets li {
+  margin: 0 10px 10px 0;
+  display: inline-block;
+  background: white;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 10px;
+  font-size: 16px;
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.sets li:hover {
+  border-color: #bbb;
+}
+.sets li a {
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: block;
+  width: 200px;
+  height: 200px;
+  text-indent: -9999px;
+  opacity: 0.8;
+}
+.sets li a:hover {
+  opacity: 1;
+}
+.sets .description {
+  font-family: arial, sans-serif;
+  line-height: 1.3;
+  width: 500px;
+  margin: 30px auto 0px auto;
+  color: #999;
+  text-align: center;
+}
+
+
+
+/* ITEM */
+.item {
+  text-align: center;
+  margin: 0 0 45px 0;
+}
+.item .inner-content {
+  display: inline-block;
+  position: relative;
+}
+.item .inner-content a.next,
+.item .inner-content a.previous {
+  background: url(arrow-left.png) center left no-repeat;
+  width: 24px;
+  height: 24px;
+  text-indent: -9999px;
+  display: block;
+  position: absolute;
+  top: 50%;
+}
+.item .inner-content a.next {
+  right: 0;
+  background-image: url(arrow-right.png);
+}
+.item img {
+  float: left;
+  display: block;
+  border: 10px solid white;
+  margin: 0 80px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.item .description {
+  font-family: arial, sans-serif;
+  line-height: 1.3;
+  width: 500px;
+  margin: 10px auto 0 auto;
+  color: #999;
+}
+.item .description h2 {
+  font-family: "Terminal Dosis Light", arial, serif; 
+  font-size: 22px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 10px 0;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #666;
+}
+
+/* PAGE */
+.page {
+  width: 500px;
+  padding: 20px 45px 10px 45px;
+  background: white;
+  font-family: arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0 auto 45px auto;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.page p {
+  margin: 0 0 10px 0;
+}

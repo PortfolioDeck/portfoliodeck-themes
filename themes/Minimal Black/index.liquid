@@ -1,0 +1,21 @@
+{% if collections != empty %}
+  {% if sets.frontpage %}
+    {% assign item = sets.frontpage.items.first %}
+    <div class="item">
+    {% if item.is_video %}
+        {{ item | video_tag: '725' }} 
+      {% else %}
+        {{ item | asset_tag: '725' }} 
+      {% endif %}
+    </div>
+  {% endif %}
+{% else %}
+  <div class="sets">
+  {% for _set in sets %}
+    <a href="{{ _set.items.first | path }}">
+      {{ _set.cover | asset_tag: 'h150' }}
+      <span class="title">{{ _set.title }}</span>
+    </a>
+  {% endfor %}
+  </div>
+{% endif %}

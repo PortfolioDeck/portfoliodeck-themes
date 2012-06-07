@@ -1,0 +1,24 @@
+{% if collections == empty %}
+<div class="sets">
+  <ul>
+    {% for _set in sets %}
+    <li><a href="{{ _set.items.first | path }}" class="{% cycle 'one', 'two', 'three' %}" style="background-image:url({{ _set.cover | image_url: 'c200' }});" title="{{ _set.title }}">{{ _set.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% else %}
+    {% for _collection in collections %}
+        <div class="set_wrapper">
+          <div class="sets">
+            <ul>
+              {% for _set in _collection.sets %}
+              <li>
+                  <a href="{{ _set.items.first | path_with_collection: _collection }}" class="{% cycle 'one', 'two', 'three' %}" style="background-image:url({{ _set.cover | image_url: 'c200' }});" title="{{ _set.title }}">{{ _set.title }}</a>
+                  {{ _set.title }}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+    {% endfor %}
+{% endif %}

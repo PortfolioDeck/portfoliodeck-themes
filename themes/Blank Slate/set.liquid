@@ -1,0 +1,11 @@
+<h1>{{ set.title }}</h1>
+<div class="description">
+  {{ set.description | textilize }}
+</div>
+<div class="thumbs">
+  {% for item in set.assets %}
+    <a href="{{ item | path_with_collection: collection }}">
+      {{ item | asset_tag: 'h150' }}
+    </a>
+  {% endfor %}
+</div>

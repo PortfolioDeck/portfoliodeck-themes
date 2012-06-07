@@ -1,0 +1,11 @@
+<div class="sets">
+  <h1>{{ collection.name }}</h1>
+  {% for _set in collection.sets %}
+    <a href="{{ _set | path_with_collection: collection] }}" class="{% cycle 'one', 'two', 'three' %}">{{ _set.cover | asset_tag: 'c205x140' }}
+      <span class="title">{{ _set.title }}</span>
+      {% if _set.description %}
+        <span class="description">{{_set.description }}</span>
+      {% endif %}
+    </a>
+  {% endfor %}
+</div>
