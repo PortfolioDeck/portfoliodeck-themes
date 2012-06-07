@@ -1,7 +1,8 @@
 // The models object, passed to the template later on
 var models = {
   portfolio: { 
-    name: "My awesome portfolio" 
+    name: "My awesome portfolio",
+    logo: {}
   },
   contact: {
     email: "my.email@domain.com",
