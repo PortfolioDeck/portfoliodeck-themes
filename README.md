@@ -1,6 +1,7 @@
 ## Adding a theme
 
 1. Create a new folder in `themes` containing:
+
 * Assets (a folder with css, images etc)
 * collection.liquid
 * index.liquid
