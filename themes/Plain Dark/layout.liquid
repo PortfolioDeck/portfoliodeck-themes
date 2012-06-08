@@ -8,7 +8,10 @@
   <link href="{{theme | asset_path: 'public.css'}}" media="screen" rel="Stylesheet" type="text/css">
   <meta property="og:title" content="{% if set %}{{ set.title }}{% elsif collection %}{{ collection.title }}{% elsif page %}{{ page.title }}{% endif %} &ndash; {{ portfolio.name | strip_html }}" />
   <meta property="og:type" content="website" />
-  {% if item %}<meta property="og:image" content="{{ item | image_url: '600' }}" />
+  {% if item %}
+    <meta property="og:image" content="{{ item | image_url: '600' }}" />
+    {% if item.next_item %}<link rel="next" href="{{ item.next_item | path_with_collection: collection }}">{% endif %}
+    {% if item.previous_item %}<link rel="pref" href="{{ item.previous_item | path_with_collection: collection }}">{% endif %}
   {% elsif set %}<meta property="og:image" content="{{ set.cover | image_url: '600' }}" />
   {% elsif collection %}<meta property="og:image" content="{{ collection.cover | image_url: '600' }}" />{% endif %}
 </head>
