@@ -1,3 +1,7 @@
+var themulatorSets = 6;
+var themulatorCollections = 3;
+var themulatorItems = 15;
+
 // The models object, passed to the template later on
 var models = {
   portfolio: { 
@@ -64,17 +68,17 @@ var models = {
 };
 
 // Create multiple items
-for (var i = 1; i < 15; i++) {
+for (var i = 1; i < themulatorItems; i++) {
   models.sets[0].items[i] = $.extend(true, {}, models.sets[0].items[0]);
 }
 
 // Set up some helpers
 models.sets[0].items.first = models.sets[0].items[0];
-models.sets[0].items.size = models.sets[0].items.length;
+models.sets[0].items.size = themulatorItems;
 models.sets[0].assets = models.sets[0].items;
 
 // Create multiple sets
-for (var s = 1; s < 6; s++) {
+for (var s = 1; s < themulatorSets; s++) {
   models.sets[s] = $.extend(true, {}, models.sets[0]);
 }
 for (var s = 0, l = models.sets.length; s < l; s++) {
@@ -87,7 +91,7 @@ for (var s = 0, l = models.sets.length; s < l; s++) {
 models.collections[0].sets = models.sets;
 
 // Create multiple collections
-for (var c = 1; c < 3; c++) {
+for (var c = 1; c < themulatorCollections; c++) {
   models.collections[c] = $.extend(true, {}, models.collections[0]);
 }
 for (var c = 0, l = models.collections.length; c < l; c++) {
@@ -104,4 +108,6 @@ var objects = {
   item: models.sets[0].items[0]
 }
 
-
+// Set up some helpers
+objects.item.set = models.sets[0];
+objects.item.set.size = themulatorItems;
