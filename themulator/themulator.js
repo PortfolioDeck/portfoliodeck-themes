@@ -54,10 +54,10 @@ var loadPage = function(page) {
       src = src.replace(/\{\{\s*?theme\s*?\|\s*?asset_path:\s*?'(.*?)'\s*?\}\}/gi, theme + "/assets/$1?timestamp=" + timeStamp);
       src = src.replace(/href="\/"/gi, 'href="index.html"');
       src = src.replace("</head>", "<meta http-equiv=\"Expires\" content=\"Tue, 01 Jan 2000 12:12:12 GMT\"><meta http-equiv=\"Pragma\" content=\"no-cache\"><base target=\"_top\"></head>");
-      if (console) { console.log(src); }
       
       var tmpl = Liquid.parse(src);
       var html = tmpl.renderWithErrors(models);
+      if (console) { console.log(html); }
       ifrm.document.open();
       ifrm.document.write(html);
       ifrm.document.close();
