@@ -52,6 +52,7 @@ var loadPage = function(page) {
       var src = layout.replace(/{{\s*?content_for_layout\s*?}}/, pageContent);
       var timeStamp = new Date().getTime();
       src = src.replace(/\{\{\s*?theme\s*?\|\s*?asset_path:\s*?'(.*?)'\s*?\}\}/gi, theme + "/assets/$1?timestamp=" + timeStamp);
+      src = src.replace(/href="\/"/gi, 'href="index.html"');
       src = src.replace("</head>", "<meta http-equiv=\"Expires\" content=\"Tue, 01 Jan 2000 12:12:12 GMT\"><meta http-equiv=\"Pragma\" content=\"no-cache\"><base target=\"_top\"></head>");
       if (console) { console.log(src); }
       
