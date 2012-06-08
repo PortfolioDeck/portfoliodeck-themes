@@ -21,7 +21,7 @@ var assetUrl = function(dimensions) {
 
 Liquid.registerFilters({
   image_tag: function(object, dimensions) {
-    return "<img src=\"" + assetUrl(dimensions) + "\">";
+    return "<img src=\"" + assetUrl(dimensions) + "\" alt=\"\">";
   },
 
   image_url: function(object, dimensions) {
@@ -29,7 +29,7 @@ Liquid.registerFilters({
   },
 
   asset_tag: function(object, dimensions) {
-    return "<img src=\"" + assetUrl(dimensions) + "\">";
+    return "<img src=\"" + assetUrl(dimensions) + "\" alt=\"\">";
   },
 
   path: function(object) {

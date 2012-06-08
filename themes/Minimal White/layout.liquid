@@ -1,7 +1,7 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
   <title>
     {% if set %}{{ set.title }} &ndash; {% elsif collection %}{{ collection.title }} &ndash; {% elsif page %}{{ page.title }} &ndash; {% endif %}{{ portfolio.name | strip_html }}
   </title>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
   <title>
     {% if set %}{{ set.name }} &ndash; {% elsif collection %}{{ collection.title }} &ndash; {% elsif page %}{{ page.title }} &ndash; {% endif %}{{ portfolio.name | strip_html }}
   </title>
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
-  <link href="{{theme | asset_path: 'style.css'}}" media="screen" rel="Stylesheet" type="text/css">
+  <link href="{{theme | asset_path: 'style.css'}}" media="screen" rel="stylesheet" type="text/css">
   
   <meta property="og:title" content="{% if set %}{{ set.name }}{% elsif collection %}{{ collection.title }}{% elsif page %}{{ page.title }}{% endif %} &ndash; {{ portfolio.name | strip_html }}" />
   <meta property="og:type" content="website" />

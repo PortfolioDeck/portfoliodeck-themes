@@ -33,7 +33,7 @@ var themulatorBar = (function() {
 
 
 var loadPage = function(page) {
-  var theme = themes[getTheme()].path;
+  var theme = themes[getTheme()].path.replace(" ", "%20");
   var ifrm = $("#content")[0];
   ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
   var html = "";
