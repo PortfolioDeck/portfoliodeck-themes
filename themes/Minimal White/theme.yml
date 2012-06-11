@@ -1,2 +1,4 @@
 name: "Minimal White"
-description: "Classic. White."
+description: "If you have any collections and pages they are shown in a left-side navigation. Create a set called \"Frontpage\" and the first image will show on the frontpage. 
+If you don't have any collections or pages all your sets will be shown on the frontpage."
+default: true
