@@ -1,41 +1,42 @@
 body {
-min-width: 960px; 
-color: #aaa;
-font: normal 13px/1.5 "Droid Sans Mono", Monaco, Courier; }
+  min-width: 960px; 
+  color: #aaa;
+  font: normal 13px/1.5 "Droid Sans Mono", Monaco, Courier; }
 
 a { 
-color: #aaa;
-text-decoration: none; }
+  color: #aaa;
+  text-decoration: none; }
 a:hover { text-decoration: underline; }
 a.current { color: #333; }
 h1, h2, h3 { 
-margin: 0;
-font-size: 100%; }
+  margin: 0;
+  font-size: 100%; }
 p { margin:0 0 1em 0; }
 
 .grid_1, .grid_2, .grid_3, .grid_4 {
-display:inline;
-float: left;
-position: relative;
-margin-left: 15px;
-margin-right: 15px; }
+  display:inline;
+  float: left;
+  position: relative;
+  margin-left: 15px;
+  margin-right: 15px; }
 .grid_1 { width:210px; }
 .grid_2 { width:450px; }
 .grid_3 { width:690px; }
 .grid_4 { width:930px; }
 
 #wrap {
-margin-top: 2em;
-margin-left: auto;
-margin-right: auto;
-width: 960px;
-position: relative; }
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  position: relative; }
 
 .title { 
   font-weight: normal;
   font-size: 100%;
   margin: 0 0 1em 0; }
-  .title span { color: #aaa; }
+  .title a { display: block; }
+  .title span {  color: #aaa; }
   
 .title a, .set .item, .page { color: #333; }    
 .pagination { text-align: center; }
@@ -57,7 +58,7 @@ position: relative; }
 
 .items {
   -moz-column-count: 3;
-  -moz-column-gap: 0px;
+  -moz-column-gap: 30px;
   -webkit-column-count: 3;
   -webkit-column-gap: 30px;
   column-count: 3;

@@ -1,17 +1,17 @@
 <div class="items">
-{% if collections != empty %}
+  {% if collections != empty %}
     {% for _collection in collections %}
-  {% for _set in _collection.sets %}
+      {% for _set in _collection.sets %}
         <div class="item">
           <a href="{{ _set | path }}">{{ _set.cover | asset_tag: 'w210' }}</a>
         </div>
-        {% endfor %}
+      {% endfor %}
     {% endfor %}
-{% else %}
+  {% else %}
     {% for _set in sets %}
       <div class="item">
         <a href="{{ _set | path }}">{{ _set.cover | asset_tag: 'w210' }}</a>
       </div>
     {% endfor %}
-{% endif %}
+  {% endif %}
 </div>
