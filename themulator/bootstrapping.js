@@ -25,7 +25,21 @@ var models = {
     facebook: "http://facebook.com/portfoliodeck",
     twitter: "http://twitter.com/portfoliodeck",
     url: "http://portfoliodeck.com",
-    url_title: "My site"
+    url_title: "My site",
+    hcard: '<div class="vcard">' +
+      '<span class="fn n">My awesome portfolio</span>' +
+      '<a class="email" href="mailto:my.email@domain.com">my.email@domain.com</a>' +
+      '<span class="adr">' +
+      '<span class="street-address">Somestreet 21</span>' +
+      '<span class="locality">Mycity</span>, ' +
+      '<span class="postal-code">12345</span>' +
+      '<span class="country-name">Mycountry</span>' +
+      '</span>' +
+      '<span class="tel">08-56363532</span>' +
+      '<a href="http://facebook.com/portfoliodeck" class="url">Facebook</a>' +
+      '<a href="http://twitter.com/portfoliodeck" class="url">Twitter</a>' +
+      '<a class="url" href="http://portfoliodeck.com">My site</a>' +
+      '</div>'
   },
   sets: [
     {
