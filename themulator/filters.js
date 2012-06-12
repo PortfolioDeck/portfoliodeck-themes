@@ -1,10 +1,10 @@
 var assetUrl = function(dimensions, text) {
   var dims = dimensions.split("x");
   if (dims.length < 2) {
-    if (dims[0].indexOf("w")) {
+    if (dims[0].indexOf("w") >= 0) {
       dims[0] = dims[0].replace(/[^0-9]/g, '');
       dims[1] = Math.round(dims[0]*0.75);
-    } else if (dims[0].indexOf("h")) {
+    } else if (dims[0].indexOf("h") >= 0) {
       dims[0] = dims[0].replace(/[^0-9]/g, '');
       dims[1] = dims[0];
       dims[0] = Math.round(dims[1]*0.75);
