@@ -7,7 +7,7 @@ var models = {
   portfolio: { 
     name: "My awesome portfolio",
     logo: {
-      text: "Company name",
+      text: "My logo",
       width: "500",
       height: "200",
       landscape: true,
