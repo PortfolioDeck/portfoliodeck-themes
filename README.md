@@ -1,7 +1,7 @@
 ## PortfolioDeck Themes
 
 These are the themes that are available in the Portfoliodeck web app. 
-Check it out if you haven't: http://portfoliodeck.com.
+Check it out if you haven't yet: http://portfoliodeck.com.
 
 ## Themulator
 
