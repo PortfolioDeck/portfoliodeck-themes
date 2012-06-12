@@ -1,4 +1,4 @@
-var assetUrl = function(dimensions) {
+var assetUrl = function(dimensions, text) {
   var dims = dimensions.split("x");
   if (dims.length < 2) {
     if (dims[0].indexOf("w")) {
@@ -16,6 +16,9 @@ var assetUrl = function(dimensions) {
     dims[0] = dims[0].replace(/[^0-9]/g, '');
     dims[1] = dims[1].replace(/[^0-9]/g, '');
   }
+  if (text) {
+    return "http://placehold.it/" + dims[0] + "x" + dims[1] + "&text=" + text.replace(" ", "+");
+  }
   return "http://placekitten.com/" + dims[0] + "/" + dims[1];
 };
 
@@ -25,6 +28,9 @@ Liquid.registerFilters({
   },
 
   image_url: function(object, dimensions) {
+    if (object.text) {
+      return assetUrl(dimensions, object.text);
+    }
     return assetUrl(dimensions);
   },
 
