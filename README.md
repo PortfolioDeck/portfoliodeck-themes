@@ -40,7 +40,7 @@ The file `theme.yml` is used to specify settings for a theme. The `name` field i
 	default: true # theme is default for new accounts, only one theme in the main repo can have this
 	
 
-## Creating a theme
+## Writing themes
 
 It's easy. Just check out http://portfoliodeck.com/docs/themes.html
 
