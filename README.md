@@ -13,9 +13,8 @@ You may use the built in Apache server in OS X for example.
 
 ## Adding a theme
 
-Create a new topic branch, i.e. “kitteh-theme”
-
-Add a folder in `themes` with your theme name. The folder needs the following files:
+Create a new topic branch, i.e. “kitteh-theme” and add a folder in `themes` with your theme name. 
+The folder needs the following files:
 
 * collection.liquid
 * index.liquid
@@ -33,9 +32,7 @@ Add your theme to list of themes i `/themes.js` to make it display in the theme 
 
 ### theme.yml
 
-The file `theme.yml` is used to specify settings for a theme. The `name` field is required.
-
-Example theme.yml:
+The file `theme.yml` is used to specify settings for a theme. The `name` field is required. Example theme.yml:
 
 	name: "My theme"
 	description: "This is a super awesome theme"
