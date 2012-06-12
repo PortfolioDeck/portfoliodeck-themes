@@ -27,12 +27,12 @@ var models = {
     url: "http://portfoliodeck.com",
     url_title: "My site",
     hcard: '<div class="vcard">' +
-      '<span class="fn n">My awesome portfolio</span>' +
+      '<span class="fn n">My awesome portfolio</span> ' +
       '<a class="email" href="mailto:my.email@domain.com">my.email@domain.com</a>' +
       '<span class="adr">' +
-      '<span class="street-address">Somestreet 21</span>' +
+      '<span class="street-address">Somestreet 21</span>, ' +
+      '<span class="postal-code">12345</span> ' +
       '<span class="locality">Mycity</span>, ' +
-      '<span class="postal-code">12345</span>' +
       '<span class="country-name">Mycountry</span>' +
       '</span>' +
       '<span class="tel">08-56363532</span>' +
