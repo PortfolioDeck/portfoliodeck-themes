@@ -1,3 +1,8 @@
+## PortfolioDeck Themes
+
+These are the themes that are available in the Portfoliodeck web app. 
+Check it out if you haven't: http://portfoliodeck.com.
+
 ## Themulator
 
 Themulator is a javascript engine that can run 
