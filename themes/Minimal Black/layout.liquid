@@ -21,9 +21,12 @@
 <body>
 {% endif %}
 <div id="wrap"><div class="inner">
-  <div id="title"><a href="/">{{ portfolio.name }}</a></div>
-{% if collections != empty or pages != empty %}
   <div id="nav">
+    {% if portfolio.logo %}
+      <h1 class="title"><a href="/"><img src="{{ portfolio.logo | image_url: '155' }}" alt="{{ portfolio.name }}"></a></h1>
+    {% else %}
+      <h1 class="title"><a href="/">{{ portfolio.name }}</a></h1>
+    {% endif %}
     {% if collections != empty %}
     <ul class="collections">
       {% for _collection in collections %}
@@ -59,7 +62,6 @@
     </ul>
     {% endif %}
   </div>
-{% endif %}
   <div id="content">
     {{content_for_layout}}
   </div>

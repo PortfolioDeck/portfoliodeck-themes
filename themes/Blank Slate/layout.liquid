@@ -14,7 +14,13 @@
   {% elsif collection %}<meta property="og:image" content="{{ collection.cover | image_url: '600' }}" />{% endif %}
 </head>
 <body>
-  <div id="title"><a href="/">{{ portfolio.name }}</a></div>
+  <div id="title">
+    {% if portfolio.logo %}
+      <img src="{{ portfolio.logo | image_url: '200' }}" alt="{{ portfolio.name }}">
+    {% else %}
+      <a href="/">{{ portfolio.name }}</a>
+    {% endif %}
+  </div>
   <div id="nav">
     <ul class="collections">
       {% for _collection in collections %}

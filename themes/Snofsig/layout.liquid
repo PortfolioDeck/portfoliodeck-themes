@@ -76,6 +76,9 @@
     {% if contact.twitter %}<a href="{{ contact.twitter }}" class="url">Twitter</a>{% endif %}
     {% if contact.url %}<a class="url" href="{{ contact.url }}">My site</a>{% endif %}
   </div>
+  {% if portfolio.logo %}
+    <a href="/" class="logo"><img src="{{ portfolio.logo | image_url: '100' }}" alt="{{ portfolio.name }}"></a>
+  {% endif %}
 </div>
 </body>
 </html>

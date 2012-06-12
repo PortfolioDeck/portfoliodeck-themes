@@ -24,7 +24,12 @@
 {% endif %}
 <div id="wrap">
   <div class="grid_1" id="nav">
-    <h1 class="title"><a href="/">{{ portfolio.name }}</a>
+    {% if portfolio.logo %}
+      <h1 class="title"><a href="/"><img src="{{ portfolio.logo | image_url: '210' }}" alt="{{ portfolio.name }}"></a></h1>
+    {% else %}
+      <h1 class="title"><a href="/">{{ portfolio.name }}</a></h1>
+    {% endif %}
+    
     {% if portfolio.description %}
       <span>{{ portfolio.description }}</span>
     {% endif %}

@@ -66,6 +66,10 @@ h2 {
 #footer .fn {
   margin-right: 10px;
 }
+#footer .logo {
+  margin: 15px auto 15px auto;
+  display: block;
+}
 
 /* NAVIGATION */
 #nav {
