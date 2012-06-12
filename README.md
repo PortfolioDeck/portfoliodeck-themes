@@ -43,6 +43,11 @@ Example theme.yml:
 	default: true # theme is default for new accounts, only one theme in the main repo can have this
 	
 
+## Creating a theme
+
+It's easy. Just check out http://portfoliodeck.com/docs/themes.html
+
+
 ## Syncing themes with application
 
 This requires that you have access to the main PortfolioDeck app repository.
