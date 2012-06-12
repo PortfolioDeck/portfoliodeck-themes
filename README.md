@@ -1,6 +1,12 @@
-## How to run
+## Themulator
 
-Open `index.html` in a browser.
+The themes in this repository comes with a javascript engine that is able to emulate running 
+the themes on PortfolioDeck -- we call it Themulator(r).
+
+## How to run the Themulator
+
+Open `index.html` in a browser. You *MUST* run the Themulator from a web server (for browser security reasons). 
+You may use the built in Apache server in OS X for example.
 
 ## Adding a theme
 
