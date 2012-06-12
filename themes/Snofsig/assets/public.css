@@ -227,3 +227,29 @@ h2 {
 .page p {
   margin: 0 0 10px 0;
 }
+.page h1,
+.page h2,
+.page h3,
+.page h4 {
+  text-transform: none;
+  font-weight: bold;
+  margin: 0 0 7px 0;
+  color: #333;
+  text-align: left;
+}
+.page h1 {
+  font-size: 25px;
+}
+.page p + h1,
+.page p + h2,
+.page p + h3,
+.page p + h4 {
+  margin-top: 20px;
+}
+.page h2,
+.page h3,
+.page h4 {
+  line-height: 1.4;
+  font-size: 16px;
+  margin: 0 0 0 0;
+}
