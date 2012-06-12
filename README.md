@@ -2,7 +2,7 @@
 
 Themulator is a javascript engine that can run 
 PortfolioDeck themes locally on a web server. You will see the themes as they would look 
-on PortfolioDeck. We call it Themulator(r). It's included in this repository.
+on PortfolioDeck. We call it Themulator -- and it's included in this repository.
 
 
 ### Running Themulator
