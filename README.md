@@ -5,7 +5,7 @@ PortfolioDeck themes locally on a web server. You will see the themes as they wo
 on PortfolioDeck. We call it Themulator(r). It's included in this repository.
 
 
-## How to run Themulator
+### Running Themulator
 
 Just open `/index.html` in a browser. You *MUST* run the Themulator from a web server (for browser security reasons). 
 You may use the built in Apache server in OS X for example.
