@@ -1,2 +1,3 @@
 name: "Plain Dark"
 description: "This is a very basic theme on a dark background. All sets are visible on the frontpage. When you click a set you are shown the first item."
+hidden: true
