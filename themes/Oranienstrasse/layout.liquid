@@ -32,6 +32,13 @@
             <a href="{{ _collection | path }}"{% if _collection.id == collection.id %} class="current"{% endif %}>{{ _collection.title }}</a>
           </li>
         {% endfor %}
+        {% if collections == empty %}
+          {% for _set in sets %}
+            <li>
+              <a href="{{ _set.items.first | path }}"{% if _set.id == set.id %} class="current"{% endif %}>{{ _set.title }}</a>
+            </li>
+          {% endfor %}
+        {% endif %}
         {% for _page in pages %}
           <li>
             <a href="{{ _page | path }}"{% if _page.id == page.id %}class="current"{% endif %}>{{ _page.title }}</a>
