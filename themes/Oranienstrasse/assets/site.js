@@ -40,8 +40,6 @@ jQuery(document).ready(function($) {
                     }
                 });
             });
-            $ctCollContainer.colladjust();
-            $ctCollContainer.find('div.ct-coll-item-multi').collslider();
         };
         return { init: init };
     })();
