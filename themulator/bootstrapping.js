@@ -5,7 +5,7 @@ var themulatorItems = 15;
 // The models object, passed to the template later on
 var models = {
   portfolio: { 
-    name: "My awesome portfolio",
+    name: "Bender Rodriquez",
     logo: {
       text: "My logo",
       width: "500",

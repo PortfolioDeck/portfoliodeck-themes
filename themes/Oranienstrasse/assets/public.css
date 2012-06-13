@@ -1,0 +1,101 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.1
+build: 47
+*/
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
+
+html {
+  background: #dcdcdc;
+}
+body { 
+  padding: 40px;
+  font-family: 'Nunito', arial, serif; 
+  font-size: 14px;
+  color: #333;
+}
+a {
+  color: #1592ea;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #333;
+}
+
+#wrapper {
+  max-width: 800px;
+  background: #fff;
+  padding: 20px;
+  margin: 0 auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+#footer {
+  max-width: 800px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.vcard {
+  margin: 0 0 15px 0;
+}
+.vcard .fn {
+  display: none;
+}
+.vcard .email,
+.vcard .adr,
+.vcard .tel,
+.vcard .url {
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+
+#title {
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #fef300;
+  padding: 10px;
+  float: left;
+  margin: 0 30px 0 0;
+  position: absolute;
+  top: 0;
+  left: 40px;
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  -o-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+}
+#title a {
+  color: #333;
+}
+#title span {
+  font-weight: 300;
+  display: block;
+  font-size: 14px;
+}
+
+#nav {
+  float: left;
+}
+#nav .menu li {
+  margin: 20px 15px 0 0;
+  padding: 10px 15px 10px 0;
+  float: left;
+}
+#nav .menu li:last-child {
+  margin-right: 0;
+  padding-right: 0;
+  border-right: 0;
+}
+#nav a {
+  color: #333;
+  text-transform: uppercase;
+}

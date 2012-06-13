@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ portfolio.name }}</title>
+  <link href="{{theme | asset_path: 'public.css'}}" media="screen" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Nunito:700,300' rel='stylesheet' type='text/css'>
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:type" content="website" />
+  {% if item %}
+    <meta property="og:image" content="{{ item | image_url: '600' }}" />
+    {% if item.next_item %}<link rel="next" href="{{ item.next_item | path_with_collection: collection }}">{% endif %}
+    {% if item.previous_item %}<link rel="pref" href="{{ item.previous_item | path_with_collection: collection }}">{% endif %}
+  {% elsif set %}<meta property="og:image" content="{{ set.cover | image_url: '600' }}" />
+  {% elsif collection %}<meta property="og:image" content="{{ collection.cover | image_url: '600' }}" />{% endif %}
+</head>
+<body>
+  <div id="wrapper">
+    <div id="title">
+      <span>The portfolio of</span>
+      <a href="/">{{ portfolio.name }}</a>
+    </div>
+
+    <div id="content">
+      {{content_for_layout}}
+    </div>
+
+    <div id="nav">
+      <ul class="menu">
+        {% for _collection in collections %}
+          <li>
+            <a href="{{ _collection | path }}"{% if _collection.id == collection.id %} class="current"{% endif %}>{{ _collection.title }}</a>
+          </li>
+        {% endfor %}
+        {% for _page in pages %}
+          <li>
+            <a href="{{ _page | path }}"{% if _page.id == page.id %}class="current"{% endif %}>{{ _page.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+  <div id="footer">
+    <div class="vcard">
+      <span class="fn n">{{ portfolio.name }}</span>
+      <a class="email" href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+      <span class="adr">
+        <span class="street-address">{{ contact.street_address }}</span>,
+        <span class="postal-code">{{ contact.postcode }}</span>
+        <span class="locality">{{ contact.city }}</span>,
+        <span class="country-name">{{ contact.country }}</span>
+      </span>
+      <span class="tel">{{ contact.phone }}</span>
+      <a href="{{ contact.facebook }}" class="url">Facebook</a>
+      <a href="{{ contact.twitter }}" class="url">Twitter</a>
+      <a class="url" href="{{ contact.url }}">My site</a>
+    </div>
+    {% if portfolio.logo %}
+      <img src="{{ portfolio.logo | image_url: '100' }}" alt="{{ portfolio.name }}">
+    {% endif %}
+  </div>
+  <script type="text/javascript" src="{{theme | asset_path: 'site.js'}}"></script>
+
+</body>
+</html>

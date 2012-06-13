@@ -1,0 +1,14 @@
+<div class="pagination">
+  <a href="{{ item.set | path_with_collection: collection}}">Thumbs</a>
+  {% if item.previous_item %}
+    <a href="{{ item.previous_item | path_with_collection: collection }}" class="previous">Previous</a> | 
+  {% endif %}
+  {{ item.position }}/{{ item.set.items.size }} 
+  {% if item.next_item %}
+    | <a href="{{ item.next_item | path_with_collection: collection }}" class="next">Next</a>
+  {% endif %}
+</div>
+
+{{ item | asset_tag: '725' }} 
+<h1>{{ item.title }}</h1>
+{{ item.description | textilize }}

@@ -1,5 +1,9 @@
 var themes = [
   { 
+    name: "Oranienstrasse",
+    path: "themes/Oranienstrasse"
+  },
+  { 
   	name: "Mariatorget",
   	path: "themes/Mariatorget"
   },
