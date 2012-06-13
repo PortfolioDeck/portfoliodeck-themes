@@ -57,7 +57,7 @@ var loadPage = function(page) {
       
       var tmpl = Liquid.parse(src);
       var html = tmpl.renderWithErrors(models);
-      if (console) { console.log(html); }
+      if (typeof console != "undefined") { console.log(html); }
       ifrm.document.open();
       ifrm.document.write(html);
       ifrm.document.close();
