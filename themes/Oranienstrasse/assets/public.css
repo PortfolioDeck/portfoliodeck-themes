@@ -166,6 +166,7 @@ a:focus {
 }
 #item-description {
   margin: 0 0 20px 0;
+  overflow: hidden;
 }
 #item-description h1 {
   font-weight: bold;
