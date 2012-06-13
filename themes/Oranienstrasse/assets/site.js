@@ -1,13 +1,3 @@
-/*$(function(){
-  var $container = $('#collection');
-  $container.imagesLoaded(function(){
-    $container.masonry({
-      itemSelector : '.item',
-      columnWidth : 200
-    });
-  });
-});*/
-
 jQuery(document).ready(function($) {
     var CollManag = (function() {
         var $ctCollContainer = $('#collection'),
