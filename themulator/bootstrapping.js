@@ -58,8 +58,10 @@ var models = {
     postcode: "12345",
     country: "Mycountry",
     phone: "08-56363532",
-    facebook: "http://facebook.com/portfoliodeck",
-    twitter: "http://twitter.com/portfoliodeck",
+    facebook: "portfoliodeck",
+    facebook_url: "http://facebook.com/portfoliodeck",
+    twitter: "portfoliodeck",
+    twitter_url: "http://twitter.com/portfoliodeck",
     url: "http://portfoliodeck.com",
     url_title: "My site",
     hcard: '<div class="vcard">' +
@@ -104,6 +106,7 @@ for (var s = 0, l = models.sets.length; s < l; s++) {
 
 // add sets to collections object
 dummyCollection.sets = models.sets;
+dummyCollection.sets.first = models.sets[0];
 
 // Create multiple collections
 for (var c = 0; c < themulatorCollections; c++) {
