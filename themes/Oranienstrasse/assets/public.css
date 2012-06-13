@@ -159,6 +159,7 @@ a:focus {
 #item {
   margin: 0 0 20px 0;
   position: relative;
+  line-height: 0;
 }
 #item img {
   width: 100% !important;
@@ -218,8 +219,26 @@ a:focus {
   #collection .item {
     width: 100%;
   }
-}
-
+  #item .previous,
+  #item .next {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    -webkit-border-radius: 0 3px 0 0;
+    -moz-border-radius: 0 3px 0 0;
+    -o-border-radius: 0 3px 0 0;
+    border-radius: 0 3px 0 0;
+    opacity: 1;
+  }
+  #item .next {
+    left: auto;
+    right: 0;
+  }
+  #nav .menu li {
+    float: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
 }
 
 
