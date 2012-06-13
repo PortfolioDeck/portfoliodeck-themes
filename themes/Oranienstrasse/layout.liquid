@@ -18,7 +18,13 @@
 <body>
   <div id="wrapper">
     <div id="title">
-      <span>The portfolio of</span>
+      <span>
+        {% if portfolio.description %}
+          {{ portfolio.description }}
+        {% else %}
+          The portfolio of
+        {% endif %}
+      </span>
       <a href="/">{{ portfolio.name }}</a>
     </div>
 
