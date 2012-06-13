@@ -49,7 +49,7 @@ var models = {
       portrait: false,
       full_name: "logo.png"
     },
-    description: "This is my portfolio and I like it!"
+    description: "Photographer"
   },
   contact: {
     email: "my.email@domain.com",
