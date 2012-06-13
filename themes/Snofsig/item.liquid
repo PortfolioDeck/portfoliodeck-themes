@@ -1,15 +1,17 @@
 <div class="item">
   <div class="inner-content">
     {% if item.previous_item %}
-      <a href="{{ item.previous_item | path_with_collection: collection }}" class="previous">&laquo; Previous</a>
+      <a href="{{ item.previous_item | path_with_collection: collection }}" class="previous">&larr;</a>
     {% endif %}
+    <div class="item-box">
+      {% if item.next_item %}
+        <a href="{{ item.next_item | path_with_collection: collection }}">{{ item | asset_tag: '725' }}</a>
+      {% else %}
+        {{ item | asset_tag: '725' }} 
+      {% endif %}
+    </div>
     {% if item.next_item %}
-      <a href="{{ item.next_item | path_with_collection: collection }}">{{ item | asset_tag: '725' }}</a>
-    {% else %}
-      {{ item | asset_tag: '725' }} 
-    {% endif %}
-    {% if item.next_item %}
-      <a href="{{ item.next_item | path_with_collection: collection }}" class="next">Next &raquo;</a>
+      <a href="{{ item.next_item | path_with_collection: collection }}" class="next">&rarr;</a>
     {% endif %}
   </div>
 
