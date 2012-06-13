@@ -50,20 +50,7 @@
   </div>
 
   <div id="footer">
-    <div class="vcard">
-      <span class="fn n">{{ portfolio.name }}</span>
-      <a class="email" href="mailto:{{ contact.email }}">{{ contact.email }}</a>
-      <span class="adr">
-        <span class="street-address">{{ contact.street_address }}</span>
-        <span class="locality">{{ contact.city }}</span> 
-        <span class="postal-code">{{ contact.postcode }}</span>
-        <span class="country-name">{{ contact.country }}</span>
-      </span>
-      <span class="tel">{{ contact.phone }}</span>
-      <a href="{{ contact.facebook }}" class="url">Facebook</a>
-      <a href="{{ contact.twitter }}" class="url">Twitter</a>
-      <a class="url" href="{{ contact.url }}">My site</a>
-    </div>
+    {{ contact.hcard }}
   </div>
   <script type="text/javascript" src="{{theme | asset_path: 'site.js'}}"></script>
 </body>

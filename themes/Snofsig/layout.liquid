@@ -55,27 +55,7 @@
   </div>
 </div></div>
 <div id="footer">
-  <div class="vcard">
-    {% if contact.email && portfolio.name %}
-      <a class="email fn n" href="mailto:{{ contact.email }}">{{ portfolio.name }}</a>
-    {% elsif portfolio.name %}
-      <span class="fn n">{{ portfolio.name }}</span>
-    {% elsif contact.email %}
-      <a class="email" href="mailto:{{ contact.email }}">{{ contact.email }}</a>
-    {% endif %}
-    {% if contact.address || contact.city || contact.post_code || contact.country %}
-      <span class="adr">
-        {% if contact.address %}<span class="street-address">{{ contact.street_address }}</span>{% endif %}
-        {% if contact.city %}<span class="locality">{{ contact.city }}</span> {% endif %}
-        {% if contact.postcode %}<span class="postal-code">{{ contact.postcode }}</span>{% endif %}
-        {% if contact.country %}<span class="country-name">{{ contact.country }}</span>{% endif %}
-      </span>
-    {% endif %}
-    {% if contact.phone %}<span class="tel">{{ contact.phone }}</span>{% endif %}
-    {% if contact.facebook %}<a href="{{ contact.facebook }}" class="url">Facebook</a>{% endif %}
-    {% if contact.twitter %}<a href="{{ contact.twitter }}" class="url">Twitter</a>{% endif %}
-    {% if contact.url %}<a class="url" href="{{ contact.url }}">My site</a>{% endif %}
-  </div>
+  {{ contact.hcard }}
   {% if portfolio.logo %}
     <a href="/" class="logo"><img src="{{ portfolio.logo | image_url: '100' }}" alt="{{ portfolio.name }}"></a>
   {% endif %}

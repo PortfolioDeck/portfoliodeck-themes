@@ -66,29 +66,11 @@
     {{content_for_layout}}
   </div>
 </div></div>
-<div id="footer"><div class="inner">
-    <div class="vcard">
-      {% if contact.email && portfolio.name %}
-        <a class="email fn n" href="mailto:{{ contact.email }}">{{ portfolio.name }}</a>
-      {% elsif portfolio.name %}
-        <span class="fn n">{{ portfolio.name }}</span>
-      {% elsif contact.email %}
-        <a class="email" href="mailto:{{ contact.email }}">{{ contact.email }}</a>
-      {% endif %}
-      {% if contact.address || contact.city || contact.post_code || contact.country %}
-        <span class="adr">
-          {% if contact.address %}<span class="street-address">{{ contact.street_address }}</span>{% endif %}
-          {% if contact.city %}<span class="locality">{{ contact.city }}</span> {% endif %}
-          {% if contact.postcode %}<span class="postal-code">{{ contact.postcode }}</span>{% endif %}
-          {% if contact.country %}<span class="country-name">{{ contact.country }}</span>{% endif %}
-        </span>
-      {% endif %}
-      {% if contact.phone %}<span class="tel">{{ contact.phone }}</span>{% endif %}
-      {% if contact.facebook %}<a href="{{ contact.facebook }}" class="url">Facebook</a>{% endif %}
-      {% if contact.twitter %}<a href="{{ contact.twitter }}" class="url">Twitter</a>{% endif %}
-      {% if contact.url %}<a class="url" href="{{ contact.url }}">My site</a>{% endif %}
-    </div>
-</div></div>
+<div id="footer">
+  <div class="inner">
+    {{ contact.hcard }}
+  </div>
+</div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"></script>
 <script type="text/javascript" src="{{theme | asset_path: 'site.js'}}"></script>
 {% if account.has_video %}
