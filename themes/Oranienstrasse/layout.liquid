@@ -57,9 +57,11 @@
       <a class="url" href="{{ contact.url }}">My site</a>
     </div>
     {% if portfolio.logo %}
-      <img src="{{ portfolio.logo | image_url: '100' }}" alt="{{ portfolio.name }}">
+      <img src="{{ portfolio.logo | image_url: 'h100' }}" alt="{{ portfolio.name }}">
     {% endif %}
   </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{{theme | asset_path: 'jquery-masonry.js'}}"></script>
   <script type="text/javascript" src="{{theme | asset_path: 'site.js'}}"></script>
 
 </body>

@@ -13,7 +13,8 @@ html {
 body { 
   padding: 40px;
   font-family: 'Nunito', arial, serif; 
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.35;
   color: #333;
 }
 a {
@@ -61,6 +62,7 @@ a:focus {
 #title {
   font-weight: bold;
   font-size: 20px;
+  line-height: 1.2;
   background-color: #fef300;
   padding: 10px;
   float: left;
@@ -72,6 +74,7 @@ a:focus {
   -moz-border-radius: 0 0 3px 3px;
   -o-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
+  z-index: 999;
 }
 #title a {
   color: #333;
@@ -86,7 +89,7 @@ a:focus {
   float: left;
 }
 #nav .menu li {
-  margin: 20px 15px 0 0;
+  margin: 15px 15px 0 0;
   padding: 10px 15px 10px 0;
   float: left;
 }
@@ -98,4 +101,92 @@ a:focus {
 #nav a {
   color: #333;
   text-transform: uppercase;
+}
+#nav a.current {
+  font-weight: bold;
+}
+#nav a:hover {
+  color: #1592ea;
+}
+
+
+#collection {
+  margin: 0 0 20px 0;
+  line-height: 0;
+  overflow: hidden;
+}
+#collection .item {
+  float: left;
+  width: 50%;
+  position: relative;
+}
+#collection .item img {
+  width: 100%;
+  height: auto !important;
+}
+#collection .item .title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 2px 5px;
+  background-color: #fef300;
+  color: #333;
+  line-height: 1;
+  z-index: 10;
+}
+
+#page {
+  padding: 100px 200px 30px 0;
+}
+#page h1 {
+  font-weight: bold;
+  font-size: 40px;
+  margin: 0 0 20px 0;
+}
+#page p {
+  margin: 0 0 10px;
+}
+#page h2,
+#page h3,
+#page h4 {
+  font-weight: bold;
+}
+
+#item {
+  margin: 0 0 20px 0;
+  position: relative;
+}
+#item-description h1 {
+  font-weight: bold;
+  float: left;
+  margin: 0 5px 0 0;
+}
+#item .previous,
+#item .next {
+  font-size: 50px;
+  color: #fff;
+  position: absolute;
+  bottom: 50%;
+  left: 20px;
+  background: rgba(0,0,0,0.25);
+  padding: 2px 10px 9px 10px;
+  line-height: 1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  opacity: 0;
+}
+#item .previous:hover,
+#item .next:hover {
+  background: rgba(0,0,0,0.5);
+}
+#item:hover .previous,
+#item:hover .next {
+  opacity: 1;
+  -webkit-transition: opacity .3s ease-in;
+}
+#item .next {
+  left: auto;
+  right: 20px;
 }

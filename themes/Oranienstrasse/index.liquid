@@ -5,13 +5,4 @@
     {{ _item | asset_tag: '800' }}      
     </div>
   {% endif %}
-{% else %}
-  <div class="sets">
-  {% for _set in sets %}
-    <a href="{{ _set.items.first | path }}">
-      {{ _set.cover | asset_tag: 'h150' }}
-      <span class="title">{{ _set.title }}</span>
-    </a>
-  {% endfor %}
-  </div>
 {% endif %}
