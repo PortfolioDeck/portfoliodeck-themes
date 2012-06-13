@@ -1,22 +1,9 @@
-document.observe("dom:loaded", function() {
-  document.observe('keydown', function(event) {
-    if (event.shiftKey) {
-      return;
-    }
-    function goTo(link) {
-      return window.location = link.href;
-    }
-    switch(event.keyCode) {
-    case Event.KEY_LEFT:
-      $$('div.pagination a.previous').each(function(link) {
-        goTo(link);
-      });
-      break;
-    case Event.KEY_RIGHT:
-      $$('div.pagination a.next').each(function(link) {
-        goTo(link);
-      });
-      break;
+jQuery(document).ready(function($) {
+  $(document).on("keyup.nextprev", function(e) {
+    if (e.keyCode == "39") { var href = $("link[rel='next']").attr("href"); }
+    if (e.keyCode == "37") { var href = $("link[rel='prev']").attr("href"); }
+    if (typeof href != "undefined" && href != "") {
+      document.location.href = href;
     }
   });
 });
