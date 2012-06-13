@@ -3,11 +3,11 @@ var assetUrl = function(dimensions, text) {
   if (dims.length < 2) {
     if (dims[0].indexOf("w") >= 0) {
       dims[0] = dims[0].replace(/[^0-9]/g, '');
-      dims[1] = Math.round(dims[0]*0.75);
+      dims[1] = Math.max(Math.round(dims[0]*Math.random()), Math.round(dims[0]*0.6));
     } else if (dims[0].indexOf("h") >= 0) {
       dims[0] = dims[0].replace(/[^0-9]/g, '');
       dims[1] = dims[0];
-      dims[0] = Math.round(dims[1]*0.75);
+      dims[0] = Math.max(Math.round(dims[1]*Math.random()), Math.round(dims[1]*0.6));
     } else {
       dims[0] = dims[0].replace(/[^0-9]/g, '');
       dims[1] = dims[0];
