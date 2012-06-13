@@ -1,5 +1,7 @@
-{% if sets.frontpage %}
-  <div class="item">
-    {{ sets.frontpage.items.first | asset_tag: '800' }}      
-  </div>
-{% endif %}
+<div class="item">
+  {% if sets.frontpage %}
+    {{ sets.frontpage.items.first | asset_tag: '800' }}
+  {% else %}
+    {{ sets.first.items.first | asset_tag: '800' }}
+  {% endif %}
+</div>
