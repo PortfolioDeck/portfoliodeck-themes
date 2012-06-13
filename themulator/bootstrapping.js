@@ -1,8 +1,43 @@
 var themulatorSets = 6;
 var themulatorCollections = 3;
 var themulatorItems = 15;
+var themulatorPages = 1;
 
-// The models object, passed to the template later on
+// Dummy items (used for bootstrapping later)
+var dummyItem = {
+  position: 1,
+  next_item: {},
+  previous_item: {},
+  is_video: false,
+  path: "item.html",
+  description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+  title: "item "
+};
+var dummyCollection = {
+  title: "Collection",
+  name: "Collection",
+  id: "[collection",
+  path: "collection.html",
+  description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source."
+};
+var dummySet = {
+  title: "Set",
+  name: "Set",
+  description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+  id: "[set",
+  path: "set.html",
+  cover: {},
+  items: []
+};
+var dummyPage = {
+  title: "Page",
+  body: "<h1>This is a heading</h1><p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p> <h2>Another heading</h2> <p>It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p> <p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.</p>",
+  id: "[page",
+  path: "page.html"
+}
+
+
+// The models object (passed to the template later on)
 var models = {
   portfolio: { 
     name: "Bender Rodriquez",
@@ -42,59 +77,24 @@ var models = {
       '<a class="url" href="http://portfoliodeck.com">My site</a>' +
       '</div>'
   },
-  sets: [
-    {
-      title: "Set",
-      name: "Set",
-      description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-      id: "[set",
-      path: "set.html",
-      cover: {},
-      items: [
-        {
-          position: 1,
-          next_item: {},
-          previous_item: {},
-          is_video: false,
-          path: "item.html",
-          description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-          title: "item "
-        }
-      ]
-    }
-  ],
-  collections: [
-    {
-      title: "Collection",
-      name: "Collection",
-      id: "[collection",
-      path: "collection.html",
-      description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source."
-    }
-  ],
-  pages: [
-    {
-      title: "My page",
-      body: "<h1>This is a heading</h1><p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p> <h2>Another heading</h2> <p>It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p> <p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.</p>",
-      id: "[page-0]",
-      path: "page.html"
-    }
-  ]
+  sets: [],
+  collections: [],
+  pages: []
 };
 
 // Create multiple items
-for (var i = 1; i < themulatorItems; i++) {
-  models.sets[0].items[i] = $.extend(true, {}, models.sets[0].items[0]);
+for (var i = 0; i < themulatorItems; i++) {
+  dummySet.items[i] = $.extend(true, {}, dummyItem);
 }
 
 // Set up some helpers
-models.sets[0].items.first = models.sets[0].items[0];
-models.sets[0].items.size = themulatorItems;
-models.sets[0].assets = models.sets[0].items;
+dummySet.items.first = dummySet.items[0];
+dummySet.items.size = themulatorItems;
+dummySet.assets = dummySet.items;
 
 // Create multiple sets
-for (var s = 1; s < themulatorSets; s++) {
-  models.sets[s] = $.extend(true, {}, models.sets[0]);
+for (var s = 0; s < themulatorSets; s++) {
+  models.sets[s] = $.extend(true, {}, dummySet);
 }
 for (var s = 0, l = models.sets.length; s < l; s++) {
   models.sets[s].name = models.sets[s].name + " " + s;
@@ -103,16 +103,25 @@ for (var s = 0, l = models.sets.length; s < l; s++) {
 }
 
 // add sets to collections object
-models.collections[0].sets = models.sets;
+dummyCollection.sets = models.sets;
 
 // Create multiple collections
-for (var c = 1; c < themulatorCollections; c++) {
-  models.collections[c] = $.extend(true, {}, models.collections[0]);
+for (var c = 0; c < themulatorCollections; c++) {
+  models.collections[c] = $.extend(true, {}, dummyCollection);
 }
 for (var c = 0, l = models.collections.length; c < l; c++) {
   models.collections[c].name = models.collections[c].name + " " + c;
   models.collections[c].title = models.collections[c].name;
   models.collections[c].id = models.collections[c].id + "-" + c + "]";
+}
+
+// Create multiple pages
+for (var p = 0; p < themulatorPages; p++) {
+  models.pages[p] = $.extend(true, {}, dummyPage);
+}
+for (var p = 0, l = models.pages.length; p < l; p++) {
+  models.pages[p].title = models.pages[p].title + " " + p;
+  models.pages[p].id = models.pages[p].id + "-" + p + "]";
 }
 
 // The singular objects (for a specific page)
