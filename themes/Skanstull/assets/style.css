@@ -66,8 +66,11 @@ p {
   }
     #nav li {
       display: inline;
+      margin: 0 0 0 .75em;
     }
-
+    #nav li:first-child {
+      margin-left: 0;
+    }
 
 .items {
   -moz-column-count: 4;
@@ -106,9 +109,20 @@ p {
   }
 
 .page {
-  padding: 3em 5em;
+  padding: 56px 99px;
   background: #f4f4f4;
 }
+  .page h1 {
+    margin-bottom: 40px;
+  }
+  .page h2 {
+    margin-top: 28px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .page h1 + h2 {
+    margin-top: 0;
+  }
 
 #footer {
   margin-bottom: 2em;
