@@ -8,6 +8,10 @@ var themes = [
   	path: "themes/Mariatorget"
   },
   { 
+  	name: "Skanstull",
+  	path: "themes/Skanstull"
+  },
+  { 
     name: "Blank Slate",
     path: "themes/Blank Slate"
   },

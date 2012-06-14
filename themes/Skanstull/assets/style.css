@@ -1,0 +1,162 @@
+body {
+  min-width: 960px; 
+  color: #aaa;
+  font: normal 13px/1.5 "Droid Sans Mono", Monaco, Courier;
+}
+a { 
+  color: #aaa;
+  text-decoration: none;
+}
+a:hover,
+a:focus { 
+  text-decoration: underline;  
+}
+a.current {
+  color: #333;
+}
+img {
+  display: block;
+}
+h1, 
+h2,
+h3 { 
+  margin: 0;
+  font-size: 100%;
+}
+p {
+  margin: 0 0 1em 0;
+}
+#nav p,
+.title a,
+.set .item,
+.page {
+  color: #1a1818;
+}    
+#wrap {
+  margin: 2em auto 0 auto;
+  width: 930px;
+  position: relative;
+}
+.title { 
+  font-weight: normal;
+  font-size: 100%;
+  margin: 0;
+}
+  .title img {
+    margin: 0 auto;
+  }
+  .title span {
+    color: #aaa;
+  }
+.pagination {
+  text-align: center;
+}
+
+#nav {
+  margin: 0 0 35px 0;
+  text-align: center;
+}
+  #nav p,
+  #nav ul {
+    margin: 6px 0 0 0;
+  }
+  #nav ul {
+    list-style: none;
+    padding: 0;
+  }
+    #nav li {
+      display: inline;
+    }
+
+
+.items {
+  -moz-column-count: 4;
+  -moz-column-gap: 30px;
+  -webkit-column-count: 4;
+  -webkit-column-gap: 30px;
+  column-count: 4;
+  column-gap: 30px;
+  margin-bottom: 2em;
+}
+  .items .item {
+    position: relative;
+    width: 210px;
+    padding-bottom: 26px;
+    margin-bottom: 0;
+    display: inline-block;
+  }
+    .item span { 
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      overflow-x: hidden;
+    }
+
+.set .item {
+  margin-bottom: 60px;
+} 
+  .set h2,
+  .set .description {
+    display: block;
+  }
+  .set .description { 
+    display: block;
+    padding-top: 15px;
+  }
+
+.page {
+  padding: 3em 5em;
+  background: #f4f4f4;
+}
+
+#footer {
+  margin-bottom: 2em;
+}
+  #footer .adr,
+  #footer .tel {
+    margin: 0 15px;
+  }
+
+.carousel {
+  margin: -2.5em 0 0 0;
+  padding: 1em 0 0 0;
+}
+#carousel {
+  margin: 0;
+  padding: 0;
+}
+  #carousel li.item {
+    display: none;
+  }
+  #carousel li.item:first-child {
+    display: block;
+  }
+  #carousel .description {
+    width: 930px;
+  }
+  #carousel img {
+    cursor: pointer;
+  }
+.carousel-navigation {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+  .carousel-navigation li {
+    display: inline;
+    position: relative;
+    top: -8px;
+  }
+  .carousel-navigation li:first-child {
+    margin: 0 5em 0 0;
+  }
+.carousel-enumeration {
+  position: relative;
+  top: -7px;
+  height: 1.5em;
+  margin: 0;
+  text-align: center;
+}
