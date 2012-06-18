@@ -42,7 +42,8 @@ body {
     color:rgb(180,180,180); }
     #footer a,
     #footer .adr,
-    #footer .tel {
+    #footer .tel,
+    #footer .fn {
         margin-right: 10px; }
 
 
