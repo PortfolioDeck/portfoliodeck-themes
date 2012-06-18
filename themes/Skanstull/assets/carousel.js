@@ -24,14 +24,14 @@
     o = $.extend({
       navigation: false,
       pagination: false,
-      enumeration: false, // "$no of $total"
+      enumeration: false, // a text like "$no of $total"
       swipe: false,
-      auto: null,
+      auto: null, // no of milliseconds between each slide 1000
       autoSpeed: 200,
       pauseOnHover: false,
       speed: 250,
       easing: null,
-      clickForNext: false, // "img"
+      clickForNext: false, // the element to trigger click on, ie "img"
 
       vertical: false,
       circular: true,
@@ -49,7 +49,7 @@
     var supportsTransition = getSupportsTransition();
 
     return this.each(function () {
-      var $div = null, current = 0, $ul = $(this), $li = $ul.children(), startPage = o.start, noOfItems  = $li.length, totalNoOfItems = $li.length, noOfPages = Math.ceil(totalNoOfItems / o.scroll), offset = Math.max(o.scroll, o.visible), autoInterval = null, running = false, animCss = o.vertical ? "top" : "left", liSize = 0, start = 0, end = 0, startTime = 0, noOfLoaded = 0, carouselNo = noOfCarousels;
+      var $div = null, current = 0, $ul = $(this), $li = $ul.children(), startPage = o.start, noOfItems  = $li.length, totalNoOfItems = $li.length, noOfPages = Math.ceil(totalNoOfItems / o.scroll), offset = Math.max(o.scroll, o.visible), autoTimeout = null, running = false, autoPlaying = false, animCss = o.vertical ? "top" : "left", liSize = 0, start = 0, end = 0, startTime = 0, noOfLoaded = 0, carouselNo = noOfCarousels;
       
       // do we have enough images to make a proper carousel?
       function tooFewImages() {
@@ -170,6 +170,10 @@
             $("#carousel-enumeration-" + carouselNo).html("").html(o.enumeration.replace("$no", getPageNo() + 1));
           }
           
+          if (autoPlaying) {
+            startAuto();
+          }
+          
           // calling potential external functions
           if (o.afterScrollEnd) {
             o.afterScrollEnd.call(this, visible());
@@ -184,21 +188,23 @@
           $ul.on(transitionEndEvents, onComplete);
           $ul.css(getCSS3Transform((distance / noOfItems) + "%", o.speed));
         } else {
-          $ul.animate((animCss === "left" ? {left: distance + "%"} : {top: -(current * liSize)}), (autoInterval ? o.autoSpeed : o.speed), o.easing, onComplete);
+          $ul.animate((animCss === "left" ? {left: distance + "%"} : {top: -(current * liSize)}), (autoTimeout ? o.autoSpeed : o.speed), o.easing, onComplete);
         }
       }
 
       // starts autoplay
       function startAuto() {
-        autoInterval = setInterval(function () {
+        autoPlaying = true;
+        autoTimeout = setTimeout(function () {
           go(current + o.scroll, o.circular);
         }, o.auto);
       }
 
       // stops autoplay
       function stopAuto() {
-        clearInterval(autoInterval);
-        autoInterval = null;
+        autoPlaying = false;
+        clearTimeout(autoTimeout);
+        autoTimeout = null;
       }
 
       // creates all the needed html and javascript events for a carousel
