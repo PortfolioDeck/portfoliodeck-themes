@@ -1,7 +1,7 @@
 body {
   min-width: 960px; 
   color: #aaa;
-  font: normal 13px/1.5 "Droid Sans Mono", Monaco, Courier;
+  font: normal 13px/1.5 "Droid Sans Mono", Courier;
 }
 a { 
   color: #aaa;
@@ -166,6 +166,9 @@ p {
   }
   .carousel-navigation li:first-child {
     margin: 0 5em 0 0;
+  }
+  .carousel-navigation .disabled {
+    visibility: hidden;
   }
 .carousel-enumeration {
   position: relative;

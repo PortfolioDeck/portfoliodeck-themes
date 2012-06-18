@@ -10,10 +10,11 @@ $(function(){
   }
 
   var $carousel = $('#carousel').carousel({
+    circular: false,
     navigation: true,
     enumeration: '$no/$total',
     swipe: true,
-    clickForNext: true
+    clickForNext: "img"
   });
   if ($carousel.length > 0) {
     $carousel.before($('#carousel-navigation-0')).before($('#carousel-enumeration-0'));

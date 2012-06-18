@@ -1,25 +1,38 @@
  /*
- * Carousel
- * Oktavilla 2011
+ * Responsive Carousel
+ * Oktavilla 2012
  */
 
 (function ($) { // Compliant with jquery.noConflict()
   var noOfCarousels = 0;
+  
+  // check if the browser supports css transitions
+  var getSupportsTransition = function() {
+    var body = document.body || document.documentElement;
+    var style = body.style;
+    return style.transition !== undefined || style.WebkitTransition !== undefined || style.MozTransition !== undefined || style.MsTransition !== undefined || style.OTransition !== undefined;
+  };
+  
+  // ugly check for css3 3d support (to improve performance) - should be more general
+  var supports3D = "WebKitCSSMatrix" in window && "m11" in new WebKitCSSMatrix();
+  
+  var transitionEndEvents = "webkitTransitionEnd msTransitionEnd oTransitionEnd transitionend";
+  
   $.fn.carousel = function (o) {
     o = $.extend({
       navigation: false,
       pagination: false,
+      enumeration: false, // "$no of $total"
       swipe: false,
       auto: null,
       autoSpeed: 200,
       pauseOnHover: false,
-      speed: 200,
+      speed: 250,
       easing: null,
-      clickForNext: false,
+      clickForNext: false, // "img"
 
       vertical: false,
       circular: true,
-      enumeration: false,
       visible: 1,
       scroll: 1,
       start: 1,
@@ -30,16 +43,34 @@
       beforeScrollStart: null,
       afterScrollEnd: null
     }, o || {});
+    
+    var supportsTransition = getSupportsTransition();
 
     return this.each(function () {
-      var $div = null, current = 0, $ul = $(this), $li = $ul.children(), startPage = o.start, noOfItems  = $li.length, totalNoOfItems = $li.length, noOfPages = Math.ceil(totalNoOfItems / o.scroll), offset = Math.max(o.scroll, o.visible), autoInterval = null, running = false, autoRunning = false, animCss = o.vertical ? "top" : "left", sizeCss = o.vertical ? "height" : "width", divSize = 0, ulSize = 0, liSize = 0, start = 0, end = 0, startTime = 0, noOfLoaded = 0, carouselNo = noOfCarousels;
+      var $div = null, current = 0, $ul = $(this), $li = $ul.children(), startPage = o.start, noOfItems  = $li.length, totalNoOfItems = $li.length, noOfPages = Math.ceil(totalNoOfItems / o.scroll), offset = Math.max(o.scroll, o.visible), autoInterval = null, running = false, autoRunning = false, animCss = o.vertical ? "top" : "left", sizeCss = o.vertical ? "height" : "width", liSize = 0, start = 0, end = 0, startTime = 0, noOfLoaded = 0, carouselNo = noOfCarousels;
 
       if (tooFewImages()) {
         return;
       }
       
-      
       noOfCarousels++;
+      
+      function getCSS3Transform(distance, duration) {
+        var options = {};
+        var transform = supports3D ? "translate3d(" + (o.vertical ? "0, " + distance : distance + ", 0") + ", 0)" : ("translate" + (o.vertical ? "Y" : "X") + "(" + distance + ")");
+        options["-moz-transform"] = transform;
+        options["-webkit-transform"] = transform;
+        options["-ms-transform"] = transform;
+        options["-o-transform"] = transform;
+        options["transform"] = transform;
+        var transition = duration + "ms";
+        options["-moz-transition-duration"] = transition;
+        options["-webkit-transition-duration"] = transition;
+        options["-ms-transition-duration"] = transition;
+        options["-o-transition-duration"] = transition;
+        options["transition-duration"] = transition;
+        return options; 
+      }     
       
       function tooFewImages() {
         return totalNoOfItems <= (o.minimumNo || Math.max(o.scroll, o.visible));
@@ -57,66 +88,91 @@
 
       // Animates
       function go(to, circulate) {
-        if (!running) {
+        if (running) {
+          return;
+        }
 
-          if (!circulate) {
-            if (to < 0) {
-              to += totalNoOfItems;
-            } else if (to >= totalNoOfItems) {
-              to %= totalNoOfItems;
-            }
+        if (!circulate) {
+          if (to < 0) {
+            to += totalNoOfItems;
+          } else if (to >= totalNoOfItems) {
+            to %= totalNoOfItems;
           }
+        }
 
-          if (o.beforeScrollStart) {
-            o.beforeScrollStart.call(this, visible());
-          }
+        if (o.beforeScrollStart) {
+          o.beforeScrollStart.call(this, visible());
+        }
 
-          // Non-circular and trying to read first or last, do nothing
-          if (!o.circular && (to < 0 || to > noOfItems - o.visible)) {
-            return false;
+        // Non-circular and trying to reach first or last, do nothing
+        if (!o.circular && (to < 0 || to > noOfItems - o.visible)) {
+          return false;
+        }
+        
+        current = to;
+        running = true;
+        
+        var onComplete = function () {
+          // removing transition events
+          if (supportsTransition) {
+            $ul.off(transitionEndEvents);
           }
           
-          current = to;
-          running = true;
-
-          $ul.animate((animCss === "left" ? {left: -((current + (o.circular ? offset : 0)) * 100 / o.visible) + "%"} : {top: -(current * liSize)}), (autoInterval ? o.autoSpeed : o.speed), o.easing,
-            function () {
-              if (o.circular && circulate) {
-                if (current < 0) {
-                  current += totalNoOfItems;
-                } else if (current >= totalNoOfItems) {
-                  current %= totalNoOfItems;
-                }
-                $ul.css(animCss, -((current + offset) * 100 / o.visible) + "%");
+          // looping, if needed
+          if (o.circular && circulate) {
+            if (current < 0) {
+              current += totalNoOfItems;
+            } else if (current >= totalNoOfItems) {
+              current %= totalNoOfItems;
+            }
+            var d = -(current + offset) * 100 / o.visible;
+            if (supportsTransition) {
+              $ul.css(getCSS3Transform((d / noOfItems) + "%", 0));
+            } else {
+              $ul.css(animCss, d + "%");
+            }
+          }
+          
+          // done
+          running = false;
+          
+          // updating pagination/navigation
+          if (o.pagination || (!o.circular && o.navigation)) {
+            if (o.pagination) {
+              var $pagination = $("#carousel-pagination-" + carouselNo);
+              $pagination.children().eq(getPageNo()).addClass("current").siblings().removeClass("current");
+            }
+            if (!o.circular && o.navigation) {
+              // Disable buttons when the carousel reaches the last/first, and enable when not
+              var $navigation = $("#carousel-navigation-" + carouselNo);
+              $navigation.children(".disabled").removeClass("disabled");
+              if (current - o.scroll < 0) {
+                $navigation.children(".previous").addClass("disabled");
+              } else if (current + o.scroll > noOfItems - o.visible) {
+                $navigation.children(".next").addClass("disabled");
               }
-              if (o.pagination || (!o.circular && o.navigation)) {
-                if (o.pagination) {
-                  var $pagination = $("#carousel-pagination-" + carouselNo);
-                  $pagination.children().eq(getPageNo()).addClass("current").siblings().removeClass("current");
-                }
-                if (!o.circular && o.navigation) {
-                  // Disable buttons when the carousel reaches the last/first, and enable when not
-                  var $navigation = $("#carousel-navigation-" + carouselNo);
-                  $navigation.children(".disabled").removeClass("disabled");
-                  if (current - o.scroll < 0) {
-                    $navigation.children(".previous").addClass("disabled");
-                  } else if (current + o.scroll > noOfItems - o.visible) {
-                    $navigation.children(".next").addClass("disabled");
-                  }
-                }
-              }
-
-              if (o.enumeration) {
-                $("#carousel-enumeration-" + carouselNo).html(o.enumeration.replace("$no", getPageNo() + 1));
-              }
-              
-              if (o.afterScrollEnd) {
-                o.afterScrollEnd.call(this, visible());
-              }
-              running = false;
-            });
+            }
+          }
+          
+          // updating enumeration
+          if (o.enumeration) {
+            $("#carousel-enumeration-" + carouselNo).html(o.enumeration.replace("$no", getPageNo() + 1));
+          }
+          
+          // calling functions
+          if (o.afterScrollEnd) {
+            o.afterScrollEnd.call(this, visible());
+          }
         }
-        return false;
+        
+        var distance = -((current + (o.circular ? offset : 0)) * 100 / o.visible);
+        
+        if (supportsTransition) {
+          $ul.on(transitionEndEvents, onComplete);
+          $ul.css(getCSS3Transform((distance / noOfItems) + "%", o.speed));
+        } else {
+          $ul.animate((animCss === "left" ? {left: distance + "%"} : {top: -(current * liSize)}), (autoInterval ? o.autoSpeed : o.speed), o.easing, onComplete);
+        }
       }
 
       // Starts autplay
@@ -139,9 +195,14 @@
         // Creating circular offsets
         if (o.circular) {
           $ul.prepend($li.slice(totalNoOfItems - offset).clone()).append($li.slice(0, offset).clone());
-          $ul.css(animCss, (o.vertical ? -$li.height() : -offset / o.visible * 100 + "%"));
           $li = $ul.children();
           noOfItems = $li.length;
+          var d = -offset / o.visible * 100;
+          if (supportsTransition) {
+            $ul.css(getCSS3Transform((d / noOfItems) + "%", 0));
+          } else {
+            $ul.css(animCss, (o.vertical ? -$li.height() : d + "%"));
+          }
         }
 
         // Constructing carousel
@@ -158,8 +219,10 @@
           "position": "relative",
           "float": "left",
           "list-style": "none",
-          "width": 100 * (o.vertical ? 1 : noOfItems / o.visible) + 0.01 + "%"
-        }); // 0.01 is trying to justify for possible rounding errors
+          "width": 100 * (o.vertical ? 1 : noOfItems / o.visible) + 0.01 + "%", // 0.01 is trying to justify for possible rounding errors
+          "-webkit-backface-visibility": "hidden", // cheating webkit into thinking that a transform has already taken place (to avoid flickering)
+          "-webkit-perspective": 0
+        });
         $div.css({
           "visibility": "visible",
           "overflow": "hidden",
@@ -210,7 +273,7 @@
         }
         
         if (o.clickForNext) {
-          $ul.on("click", "img", function () {
+          $ul.on("click", o.clickForNext, function () {
             go(current + o.scroll, o.circular);
             return false;
           });
@@ -224,30 +287,52 @@
           var options = {
             treshold: [0, 0],
             swipeStart: function (x, y) {
+              // swipe start
               startTime = new Date();
               touchStart = o.vertical ? y : x;
               liSize = o.vertical ? $li.outerHeight(true) : $li.outerWidth(true);
             }, swipeEnd: function (x, y) {
+              // swipe done, should we switch image or go back to the current one?
               touchEnd = o.vertical ? y : x;
               if (touchStart !== touchEnd) {
-                var s = Math.abs(touchEnd - touchStart) / (new Date().getTime() - startTime.getTime());
-                if (s < 0.4 && Math.abs(end - start) < liSize / 2) {
+                var d = touchEnd - touchStart;
+                // valid swipes are quick, but not too short or longer than half of the slide width, except for on the first and last non-circular slides
+                var validSwipe = ((new Date().getTime() - startTime.getTime() < 250 && Math.abs(d) > 20) || (Math.abs(d) >= liSize / 2)) && (o.circular || !((current === 0 && d > 0) || (current === noOfItems - 1 && d < 0)));
+                console.log(validSwipe);
+                // go back to current slide if the swipe was invalid
+                if (!validSwipe) {
                   go(current);
-                } else if (touchEnd > touchStart) {
+                } else if (d > 0) {
+                  // previous
                   go(current - o.scroll, o.circular);
                 } else {
+                  // next
                   go(current + o.scroll, o.circular);
                 }
               }
             }
           };
           var swipe = function (x, y) {
-            var options = [];
+            if (running) {
+              return;
+            }
+            // updating slide to swipe movement
             touchEnd = o.vertical ? y : x;
             var d = touchEnd - touchStart;
-            var value = -100 * (current + 1) + 100 * d / liSize;
-            options[o.vertical ? "top" : "left"] = value + "%";
-            $ul.css(options);
+
+            if (supportsTransition) {
+              // adding resistance on the first/last slide (not needed if circular)
+              if (!o.circular && (current === 0 && d > 0 || current === noOfItems - 1 && d < 0)) {
+                d = d / (Math.abs(d) / liSize + 2);
+              }
+              $ul.css(getCSS3Transform((-(current + (o.circular ? o.scroll : 0)) * liSize + d) + "px", 0));
+            } else {
+              // calculating new position
+              var options = {};
+              var value = -100 * (current + (o.circular ? o.scroll : 0)) + 100 * d / liSize;
+              options[o.vertical ? "top" : "left"] = value + "%";
+              $ul.css(options);
+            }
           };
           options[o.vertical ? "swipeUp" : "swipeLeft"] = swipe;
           options[o.vertical ? "swipeDown" : "swipeRight"] = swipe;
