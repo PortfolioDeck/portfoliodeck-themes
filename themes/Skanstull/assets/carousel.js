@@ -233,7 +233,6 @@
           "float": o.vertical ? "none" : "left",
           "width": (100 / (o.vertical ? 1 : noOfItems)) + "%"
         });
-        var apa = (100 / (o.vertical ? 1 : noOfItems));
         $ul.css({
           "margin": 0,
           "padding": 0,
