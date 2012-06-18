@@ -233,7 +233,7 @@
           "position": "relative",
           "float": "left",
           "list-style": "none",
-          "width": 100 * (o.vertical ? 1 : noOfItems / o.visible) + 0.01 + "%", // 0.01 is trying to justify for possible rounding errors
+          "width": (100 * (o.vertical ? 1 : noOfItems / o.visible)) + "%", // + 0.01? to justify for possible rounding errors
           "-webkit-backface-visibility": "hidden", // cheating webkit into thinking that a transform has already taken place (to avoid flickering)
           "-webkit-perspective": 0
         });
