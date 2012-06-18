@@ -16,32 +16,16 @@
     {% endif %}
   </div>
   {% if item.next_item %}
-    {% if collections == empty and pages == empty %}
-       {% if item.is_video %}
-        {{ item | video_tag: '910' }} 
-      {% else %}
-        <a href="{{ item.next_item | path_with_collection: collection }}">{{ item | asset_tag: '910' }}</a>
-      {% endif %}
+    {% if item.is_video %}
+      {{ item | video_tag: '725' }} 
     {% else %}
-      {% if item.is_video %}
-        {{ item | video_tag: '725' }} 
-      {% else %}
-        <a href="{{ item.next_item | path_with_collection: collection }}">{{ item | asset_tag: '725' }}</a>
-      {% endif %}   
-    {% endif %}
+      <a href="{{ item.next_item | path_with_collection: collection }}">{{ item | asset_tag: '725' }}</a>
+    {% endif %}   
   {% else %}
-    {% if collections == empty and pages == empty %}
-      {% if item.is_video %}
-        {{ item | video_tag: '910' }} 
-      {% else %}
-        {{ item | asset_tag: '910' }} 
-      {% endif %}
+    {% if item.is_video %}
+      {{ item | video_tag: '725' }} 
     {% else %}
-      {% if item.is_video %}
-        {{ item | video_tag: '725' }} 
-      {% else %}
-        {{ item | asset_tag: '725' }} 
-      {% endif %}
+      {{ item | asset_tag: '725' }} 
     {% endif %}
   {% endif %}
   {% if item.title %}
