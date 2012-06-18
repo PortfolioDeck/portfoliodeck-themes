@@ -47,17 +47,17 @@ body {
         margin-right: 10px; }
 
 
-#title {
-  margin:0 0 1.1em 0;
+h1.title {
+  margin:0 0 1.5em 0;
   text-transform:uppercase;
   letter-spacing:.1em; 
   font:bold 1.5em/1em helvetica, arial, sans-serif; }
-  #title a {
+  h1.title a {
     display:block;
     text-decoration:none;}
-  #title span {
-    font-weight:normal;
-    margin-left:.5em; }
+  h1.title span {
+    margin-left:.5em;
+    font-weight:normal; }
 #nav {
   float:left; 
   width:165px;
