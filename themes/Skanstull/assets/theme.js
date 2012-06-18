@@ -1,4 +1,5 @@
-$(function(){
+$(function() {
+  "use strict";
   if ($.browser.msie && $.browser.version < 10) {
     $('.items').columnize({
       columns: 3,

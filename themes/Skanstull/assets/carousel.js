@@ -3,20 +3,22 @@
  * Oktavilla 2012
  */
 
-(function ($) { // Compliant with jquery.noConflict()
-  var noOfCarousels = 0;
+(function ($) { // compliant with jquery.noConflict()
+  "use strict";
+  var noOfCarousels = 0, supports3D = false, transitionEndEvents = null;
   
   // check if the browser supports css transitions
-  var getSupportsTransition = function() {
+  function getSupportsTransition() {
     var body = document.body || document.documentElement;
     var style = body.style;
     return style.transition !== undefined || style.WebkitTransition !== undefined || style.MozTransition !== undefined || style.MsTransition !== undefined || style.OTransition !== undefined;
-  };
+  }
   
   // ugly check for css3 3d support (to improve performance) - should be more general
-  var supports3D = "WebKitCSSMatrix" in window && "m11" in new WebKitCSSMatrix();
+  supports3D = "WebKitCSSMatrix" in window && "m11" in new WebKitCSSMatrix();
   
-  var transitionEndEvents = "webkitTransitionEnd msTransitionEnd oTransitionEnd transitionend";
+  // setting up end events for css transitions
+  transitionEndEvents = "webkitTransitionEnd msTransitionEnd oTransitionEnd transitionend";
   
   $.fn.carousel = function (o) {
     o = $.extend({
@@ -47,14 +49,22 @@
     var supportsTransition = getSupportsTransition();
 
     return this.each(function () {
-      var $div = null, current = 0, $ul = $(this), $li = $ul.children(), startPage = o.start, noOfItems  = $li.length, totalNoOfItems = $li.length, noOfPages = Math.ceil(totalNoOfItems / o.scroll), offset = Math.max(o.scroll, o.visible), autoInterval = null, running = false, autoRunning = false, animCss = o.vertical ? "top" : "left", sizeCss = o.vertical ? "height" : "width", liSize = 0, start = 0, end = 0, startTime = 0, noOfLoaded = 0, carouselNo = noOfCarousels;
+      var $div = null, current = 0, $ul = $(this), $li = $ul.children(), startPage = o.start, noOfItems  = $li.length, totalNoOfItems = $li.length, noOfPages = Math.ceil(totalNoOfItems / o.scroll), offset = Math.max(o.scroll, o.visible), autoInterval = null, running = false, animCss = o.vertical ? "top" : "left", liSize = 0, start = 0, end = 0, startTime = 0, noOfLoaded = 0, carouselNo = noOfCarousels;
+      
+      // do we have enough images to make a proper carousel?
+      function tooFewImages() {
+        return totalNoOfItems <= (o.minimumNo || Math.max(o.scroll, o.visible));
+      }
 
+      // do we have enough images to make a proper carousel?
       if (tooFewImages()) {
         return;
       }
       
-      noOfCarousels++;
+      // new carousel, incrementing numbers of carousels so far
+      noOfCarousels += 1;
       
+      // function for getting css3 transform css
       function getCSS3Transform(distance, duration) {
         var options = {};
         var transform = supports3D ? "translate3d(" + (o.vertical ? "0, " + distance : distance + ", 0") + ", 0)" : ("translate" + (o.vertical ? "Y" : "X") + "(" + distance + ")");
@@ -71,27 +81,24 @@
         options["transition-duration"] = transition;
         return options; 
       }     
-      
-      function tooFewImages() {
-        return totalNoOfItems <= (o.minimumNo || Math.max(o.scroll, o.visible));
-      }
 
-      // Returns the currently visible item (in the current order)
+      // returns the currently visible items (in the current order)
       function visible() {
         return $li.slice(offset, offset + o.visible);
       }
 
-      // Returns the page for the current item number
+      // returns the current page number
       function getPageNo() {
         return Math.round(current / o.scroll);
       }
 
-      // Animates
+      // the actual animation function
       function go(to, circulate) {
         if (running) {
           return;
         }
 
+        // recalculating where we're heading, if needed
         if (!circulate) {
           if (to < 0) {
             to += totalNoOfItems;
@@ -100,19 +107,23 @@
           }
         }
 
+        // calling potential external function
         if (o.beforeScrollStart) {
           o.beforeScrollStart.call(this, visible());
         }
 
-        // Non-circular and trying to reach first or last, do nothing
+        // this carousel is non-circular and we're trying to reach the first or last item, do nothing
         if (!o.circular && (to < 0 || to > noOfItems - o.visible)) {
           return false;
         }
         
+        // initializing
         current = to;
         running = true;
-        
+
+        // function to run once we're done with the animation        
         var onComplete = function () {
+
           // removing transition events
           if (supportsTransition) {
             $ul.off(transitionEndEvents);
@@ -159,14 +170,16 @@
             $("#carousel-enumeration-" + carouselNo).html(o.enumeration.replace("$no", getPageNo() + 1));
           }
           
-          // calling functions
+          // calling potential external functions
           if (o.afterScrollEnd) {
             o.afterScrollEnd.call(this, visible());
           }
         }
         
+        // calculating distance to slide
         var distance = -((current + (o.circular ? offset : 0)) * 100 / o.visible);
         
+        // animating
         if (supportsTransition) {
           $ul.on(transitionEndEvents, onComplete);
           $ul.css(getCSS3Transform((distance / noOfItems) + "%", o.speed));
@@ -175,24 +188,25 @@
         }
       }
 
-      // Starts autplay
+      // starts autoplay
       function startAuto() {
         autoInterval = setInterval(function () {
           go(current + o.scroll, o.circular);
         }, o.auto);
       }
 
-      // Stops autoplay
+      // stops autoplay
       function stopAuto() {
         clearInterval(autoInterval);
         autoInterval = null;
       }
 
+      // creates all the needed html and javascript events for a carousel
       function createCarousel() {
-        startPage = startPage - 1; // Changing to zero base
+        startPage = startPage - 1; // changing to zero base
         current = startPage;
 
-        // Creating circular offsets
+        // creating circular offsets
         if (o.circular) {
           $ul.prepend($li.slice(totalNoOfItems - offset).clone()).append($li.slice(0, offset).clone());
           $li = $ul.children();
@@ -205,7 +219,7 @@
           }
         }
 
-        // Constructing carousel
+        // constructing carousel
         $div = $ul.wrap("<div class=\"carousel\" id=\"carousel-" + carouselNo + "\"></div>").parent();
         $li.css({
           "overflow": "hidden",
@@ -228,14 +242,15 @@
           "overflow": "hidden",
           "width": "100%"
         });
-
+        
+        // @todo in some possible future
         if (o.vertical) {
           alert("Vertical carousels not supported yet");
           $li.height($li.height());
           $div.height($li.height());
         }
 
-        // Adding navigation
+        // adding navigation
         if (o.navigation) {
           var $navigation = $("<ul class=\"carousel-navigation\" id=\"carousel-navigation-" + carouselNo + "\"></ul>");
           $navigation.append("<li class=\"previous" + (startPage === 0 ? " disabled" : "") + "\"><a href=\"\">&larr;</a></li>");
@@ -247,7 +262,7 @@
           $div.after($navigation);
         }
 
-        // Adding pagination
+        // adding pagination
         if (o.pagination) {
           $pagination = $("<ul class=\"carousel-pagination\" id=\"carousel-pagination-" + carouselNo + "\"></ul>");
           for (var i = 0; i < noOfPages; i++) {
@@ -266,12 +281,13 @@
           $div.after($pagination);
         }
 
-        // Adding enumeration
+        // adding enumeration
         if (o.enumeration) {
           o.enumeration = o.enumeration.replace("$total", noOfPages);
           $div.after("<p class=\"carousel-enumeration\" id=\"carousel-enumeration-" + carouselNo + "\">" + o.enumeration.replace("$no", getPageNo() + 1) + "</p>");
         }
         
+        // adding click-for-next functionality
         if (o.clickForNext) {
           $ul.on("click", o.clickForNext, function () {
             go(current + o.scroll, o.circular);
@@ -279,7 +295,7 @@
           });
         }
 
-        // Adding swipe functionality if available
+        // adding swipe functionality (if available)
         if (o.swipe && $.fn.swipe) {
           var swipePrevious = o.vertical ? "swipeUp" : "swipeLeft";
           var swipeNext = o.vertical ? "swipeDown" : "swipePrevious";
@@ -294,6 +310,7 @@
             }, swipeEnd: function (x, y) {
               // swipe done, should we switch image or go back to the current one?
               touchEnd = o.vertical ? y : x;
+
               if (touchStart !== touchEnd) {
                 var d = touchEnd - touchStart;
                 // valid swipes are quick, but not too short or longer than half of the slide width, except for on the first and last non-circular slides
@@ -312,6 +329,7 @@
               }
             }
           };
+          // function for each swipe move
           var swipe = function (x, y) {
             if (running) {
               return;
@@ -339,6 +357,7 @@
           $div.swipe(options);
         }
 
+        // auto playing
         if (o.auto) {
           if (o.pauseOnHover) {
             $div.nextAll(".carousel-navigation, .carousel-pagination, .carousel-enumeration").andSelf().hover(stopAuto, startAuto);
@@ -347,6 +366,7 @@
         }
       }
 
+      // handles loaded images
       function onImageLoad() {
         noOfLoaded++;
         if (noOfLoaded === totalNoOfItems) {
@@ -356,6 +376,7 @@
         }
       }
 
+      // should we wait until all images are loaded before running or just go ahead?
       if (o.waitUntilLoaded || o.removeOnError) {
         $ul.find("img").each(function() {
           if (this.completed) {
