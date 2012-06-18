@@ -385,10 +385,11 @@
             $(this).load(onImageLoad);
           }
           if (o.removeOnError) {
+            var $self = $(this);
             var src = this.src;
-            $(this).removeAttr("src");
-            $(this).error(function() {
-              $(this).parent().remove();
+            $self.removeAttr("src");
+            $self.error(function() {
+              $self.parent().remove();
               totalNoOfItems--;
               noOfItems--;
               if (totalNoOfItems === 0) {
