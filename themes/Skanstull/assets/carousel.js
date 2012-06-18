@@ -167,7 +167,7 @@
           
           // updating enumeration
           if (o.enumeration) {
-            $("#carousel-enumeration-" + carouselNo).html(o.enumeration.replace("$no", getPageNo() + 1));
+            $("#carousel-enumeration-" + carouselNo).html("").html(o.enumeration.replace("$no", getPageNo() + 1));
           }
           
           // calling potential external functions
@@ -227,6 +227,7 @@
           "float": o.vertical ? "none" : "left",
           "width": (100 / (o.vertical ? 1 : noOfItems)) + "%"
         });
+        var apa = (100 / (o.vertical ? 1 : noOfItems));
         $ul.css({
           "margin": 0,
           "padding": 0,
@@ -245,7 +246,7 @@
         
         // @todo in some possible future
         if (o.vertical) {
-          alert("Vertical carousels not supported yet");
+          alert("Vertical carousels are not supported yet");
           $li.height($li.height());
           $div.height($li.height());
         }
@@ -315,7 +316,6 @@
                 var d = touchEnd - touchStart;
                 // valid swipes are quick, but not too short or longer than half of the slide width, except for on the first and last non-circular slides
                 var validSwipe = ((new Date().getTime() - startTime.getTime() < 250 && Math.abs(d) > 20) || (Math.abs(d) >= liSize / 2)) && (o.circular || !((current === 0 && d > 0) || (current === noOfItems - 1 && d < 0)));
-                console.log(validSwipe);
                 // go back to current slide if the swipe was invalid
                 if (!validSwipe) {
                   go(current);
@@ -404,3 +404,17 @@
     });
   };
 })(jQuery);
+
+if (!console) {
+  var console = {
+    log: function(str) {
+      var $c = $("#c-o-n-s-o-l-e");
+      if ($c.length === 0) {
+        $c = $("<div id=\"c-o-n-s-o-l-e\" style=\"position: absolute; right: 0; top: 0; font: 11px verdana; color: #fff; background: #333; background: rgba(0,0,0,.5); z-index: 999999; padding: 10px;\"/>").appendTo($("body"));
+      }
+      str = ("" + str).replace(">", "&gt;");
+      str = str.replace("<", "&lt;");
+      $c.append("<p>" + str + "</p>");
+    }
+  };
+}
