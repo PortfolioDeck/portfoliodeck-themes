@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% assign _title = portfolio.name %}
   {% if set %} {% capture _title %} {{ set.title }} by {{ portfolio.name }} {% endcapture %}
   {% elsif collection %} {% capture _title %} {{ collection.title }} by {{ portfolio.name }} {% endcapture %}
   {% elsif page %} {% capture _title %} {{ page.title }} by {{ portfolio.name }} {% endcapture %}
-  {% endif %}
+  {% else %} {% capture _title %} {{ portfolio.name }} {% endcapture %} {% endif %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ _title }}</title>
