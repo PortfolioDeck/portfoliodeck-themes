@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% if set %} {% capture _title %} {{ set.title }} by {{ portfolio.name }} {% endcapture %}
-  {% elsif collection %} {% capture _title %} {{ collection.title }} by {{ portfolio.name }} {% endcapture %}
-  {% elsif page %} {% capture _title %} {{ page.title }} by {{ portfolio.name }} {% endcapture %}
-  {% else %} {% capture _title %} {{ portfolio.name }} {% endcapture %} {% endif %}
+  {% capture _title %}{% if set %}{{ set.title }} by {{ portfolio.name }}
+  {% elsif collection %}{{ collection.title }} by {{ portfolio.name }}
+  {% elsif page %}{{ page.title }} by {{ portfolio.name }} 
+  {% else %}{{ portfolio.name }}{% endif %}{% endcapture %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ _title }}</title>
+  <title>{{ _title | strip_newlines }}</title>
   <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Terminal+Dosis+Light:regular' rel='stylesheet' type='text/css'>
   <link href="{{theme | asset_path: 'public.css'}}" media="screen" rel="stylesheet" type="text/css">
-  <meta property="og:title" content="{{ _title }}" />
+  <meta property="og:title" content="{{ _title | strip_newlines }}" />
   <meta property="og:type" content="website" />
   {% if item %}<meta property="og:image" content="{{ item | image_url: '600' }}" />
   {% elsif set %}<meta property="og:image" content="{{ set.cover | image_url: '600' }}" />
