@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% assign _title = portfolio.name %}
+  {% if set %} {% capture _title %} {{ set.title }} by {{ portfolio.name }} {% endcapture %}
+  {% elsif collection %} {% capture _title %} {{ collection.title }} by {{ portfolio.name }} {% endcapture %}
+  {% elsif page %} {% capture _title %} {{ page.title }} by {{ portfolio.name }} {% endcapture %}
+  {% endif %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    {% if set %}{{ set.title }} &ndash; {% elsif collection %}{{ collection.title }} &ndash; {% elsif page %}{{ page.title }} &ndash; {% endif %}{{ portfolio.name | strip_html }}
-  </title>
+  <title>{{ _title }}</title>
   <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Terminal+Dosis+Light:regular' rel='stylesheet' type='text/css'>
   <link href="{{theme | asset_path: 'public.css'}}" media="screen" rel="stylesheet" type="text/css">
-  <meta property="og:title" content="{% if set %}{{ set.title }}{% elsif collection %}{{ collection.title }}{% elsif page %}{{ page.title }}{% endif %} &ndash; {{ portfolio.name | strip_html }}" />
+  <meta property="og:title" content="{{ _title }}" />
   <meta property="og:type" content="website" />
-  {% if item %}
-    <meta property="og:image" content="{{ item | image_url: '600' }}" />
-    {% if item.next_item %}<link rel="next" href="{{ item.next_item | path_with_collection: collection }}">{% endif %}
-    {% if item.previous_item %}<link rel="prev" href="{{ item.previous_item | path_with_collection: collection }}">{% endif %}
+  {% if item %}<meta property="og:image" content="{{ item | image_url: '600' }}" />
   {% elsif set %}<meta property="og:image" content="{{ set.cover | image_url: '600' }}" />
-  {% elsif collection %}<meta property="og:image" content="{{ collection.cover | image_url: '600' }}" />{% endif %}
+  {% elsif collection %}<meta property="og:image" content="{{ collection.cover | image_url: '600' }}" />
+  {% elsif portfolio.logo %}<meta property="og:image" content="{{ portfolio.logo | image_url: '600' }}" />{% endif %}
+  {% if item.next_item %}<link rel="next" href="{{ item.next_item | path_with_collection: collection }}">{% endif %}
+  {% if item.previous_item %}<link rel="prev" href="{{ item.previous_item | path_with_collection: collection }}">{% endif %}
 </head>
 {% if collections != empty or pages != empty or sets != empty %}
 <body class="with_nav">
