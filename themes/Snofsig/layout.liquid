@@ -31,23 +31,23 @@
     <ul>
     {% if collections == empty && sets != empty %}
         {% for _set in sets %}
-        <li><a href="{{ _set.items.first | path }}"{% if _set.id == set.id %}class="current"{% endif %}>{{ _set.title }}</a></li>
+        <li><a href="{{ _set.items.first | path }}"{% if _set.id == set.id %} class="current"{% endif %}>{{ _set.title }}</a></li>
         {% endfor %}
     {% else %}
         {% for _collection in collections %}
-        <li><a href="{{ _collection | path }}"{% if _collection.id == collection.id %}class="current"{% endif %}>{{ _collection.title }}</a></li>
+        <li><a href="{{ _collection | path }}"{% if _collection.id == collection.id %} class="current"{% endif %}>{{ _collection.title }}</a></li>
         {% endfor %}
     {% endif %}
     {% if pages != empty %}
         {% for _page in pages %}
-        <li><a href="{{ _page | path }}"{% if _page.id == page.id %}class="current"{% endif %}>{{ _page.title }}</a></li>
+        <li><a href="{{ _page | path }}"{% if _page.id == page.id %} class="current"{% endif %}>{{ _page.title }}</a></li>
         {% endfor %}
     {% endif %}
     </ul>
     {% if collection %}
         <ul>
             {% for _set in collection.sets %}
-            <li><a href="{{ _set.items.first | path_with_collection: collection }}"{% if _set.id == set.id %}class="current"{% endif %}>{{ _set.title }}</a></li>
+            <li><a href="{{ _set.items.first | path_with_collection: collection }}"{% if _set.id == set.id %} class="current"{% endif %}>{{ _set.title }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}
