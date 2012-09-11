@@ -58,9 +58,9 @@
         <a href="{{ _page | path }}"{% if _page.id == page.id %}class="current"{% endif %}>{{ _page.title }}</a>
       </li>
       {% endfor %}
-      {% if contact.facebook != empty %}<li><a href="{{ contact.facebook }}" class="url">Facebook</a></li>{% endif %}
-      {% if contact.twitter != empty %}<li><a href="{{ contact.twitter }}" class="url">Twitter</a></li>{% endif %}
-      {% if contact.url != empty %}<li><a class="url" href="{{ contact.url }}">{{ contact.url_title }}</a></li>{% endif %}
+      {% if contact.facebook %}<li><a href="{{ contact.facebook }}" class="url">Facebook</a></li>{% endif %}
+      {% if contact.twitter %}<li><a href="{{ contact.twitter }}" class="url">Twitter</a></li>{% endif %}
+      {% if contact.url %}<li><a class="url" href="{{ contact.url }}">{{ contact.url_title }}</a></li>{% endif %}
     </ul>
     {% endif %}
   </div>
