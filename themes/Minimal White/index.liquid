@@ -1,10 +1,7 @@
-{% if collections != empty %}
-  {% if sets.frontpage %}
-    {% assign _item = sets.frontpage.items.first %}
-    <div class="item">
-    {{ _item | asset_tag: '725' }}      
-    </div>
-  {% endif %}
+{% if collections != empty and sets.frontpage %}
+  <div class="item">
+   {{ sets.frontpage.items.first | asset_tag: '725' }}      
+  </div>
 {% else %}
   <div class="sets">
   {% for _set in sets %}
