@@ -33,8 +33,7 @@ p { margin:0 0 1em 0; }
 
 .title { 
   font-weight: normal;
-  font-size: 100%;
-  margin: 0 0 1em 0; }
+  font-size: 100%; }
   .title a { display: block; }
   .title span {  color: #aaa; }
   
@@ -50,7 +49,19 @@ p { margin:0 0 1em 0; }
       list-style:none;
       margin:0 0 0.5em 0; 
       padding:0; }
-  #nav .pages { margin-top: 1em; }
+  #nav .pages,
+  #nav .sets,
+  #nav .collections,
+  #nav .description { 
+    display: block;
+    margin-top: 1em; 
+  }
+  #nav .pages:first-child,
+  #nav .sets:first-child,
+  #nav .collections:first-child,
+  #nav .description:first-child {
+    margin-top: 0; 
+  }
 
 #content { 
   margin-left: 240px; 
