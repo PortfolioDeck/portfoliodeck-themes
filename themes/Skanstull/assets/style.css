@@ -1,15 +1,15 @@
 body {
-  min-width: 960px; 
+  min-width: 960px;
   color: #aaa;
   font: normal 13px/1.5 "Droid Sans Mono", Courier;
 }
-a { 
+a {
   color: #aaa;
   text-decoration: none;
 }
 a:hover,
-a:focus { 
-  text-decoration: underline;  
+a:focus {
+  text-decoration: underline;
 }
 a.current {
   color: #333;
@@ -17,9 +17,9 @@ a.current {
 img {
   display: block;
 }
-h1, 
+h1,
 h2,
-h3 { 
+h3 {
   margin: 0;
   font-size: 100%;
 }
@@ -31,13 +31,13 @@ p {
 .set .item,
 .page {
   color: #1a1818;
-}    
+}
 #wrap {
   margin: 2em auto 0 auto;
   width: 930px;
   position: relative;
 }
-.title { 
+.title {
   font-weight: normal;
   font-size: 100%;
   margin: 0;
@@ -98,7 +98,7 @@ p {
 
 .set .item {
   margin-bottom: 60px;
-} 
+}
   .set h2,
   .set .description {
     display: block;
@@ -109,6 +109,7 @@ p {
   }
 
 .page {
+  margin-bottom: 2em;
   padding: 56px 99px;
   background: #f4f4f4;
 }
