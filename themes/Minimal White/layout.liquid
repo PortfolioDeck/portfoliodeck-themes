@@ -15,7 +15,7 @@
   {% if item.next_item %}<link rel="next" href="{{ item.next_item | path_with_collection: collection }}">{% endif %}
   {% if item.previous_item %}<link rel="prev" href="{{ item.previous_item | path_with_collection: collection }}">{% endif %}
 </head>
-{% if collections != empty or pages != empty %}
+{% if sets != empty or pages != empty %}
 <body class="with_nav">
 {% else %}
 <body>
